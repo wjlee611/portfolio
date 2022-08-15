@@ -21,13 +21,14 @@ const Button = styled.button<{ isSelected: boolean }>`
   border: none;
   color: ${(props) => (props.isSelected ? "#22bbff" : "#FFFFFF")};
   margin-right: ${(props) => (props.isSelected ? "20px" : "0")};
-  font-size: 20px;
   transition: color 0.3s ease-out,
     margin-right 0.3s cubic-bezier(0, 0.5, 0.5, 1);
   position: relative;
   & > span {
     width: 150px;
     height: 30px;
+    font-size: 20px;
+    font-weight: ${(props) => (props.isSelected ? "700" : "400")};
     display: flex;
     justify-content: ${(props) =>
       props.isSelected ? "flex-start" : "flex-end"};
