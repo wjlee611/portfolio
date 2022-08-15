@@ -6,19 +6,19 @@ const CanvasWrapper = styled.canvas<{ opa: number }>`
   width: 400px;
   height: 100px;
   opacity: ${(props) => props.opa};
-  transition: opacity 0.3s linear;
+  transition: opacity 0.2s linear;
 `;
 
 interface ITitle {
   title: string;
 }
 function Title({ title }: ITitle) {
-  const [opa, setOpa] = useState(1);
+  const [opa, setOpa] = useState(0);
   useEffect(() => {
     setTimeout(() => {
       Canvas(title);
       setOpa(1);
-    }, 300);
+    }, 200);
     return () => {
       setOpa(0);
     };

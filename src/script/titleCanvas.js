@@ -8,24 +8,26 @@ function Canvas(_title) {
 
   var title = _title;
 
+  var colors = ["#fff", "#aaa", "#777"];
+
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
 
   function Particle(x, y) {
-    this.x = title.length * 15 + Math.random() * 50 - 25;
+    this.x = title.length * 15 + Math.random() * 100 - 50;
     this.y = wh / 2 + Math.random() * 10 - 5;
     this.dest = {
       x: x,
       y: y,
     };
-    this.r = 1.5;
-    this.vx = (Math.random() - 0.5) * 2;
-    this.vy = (Math.random() - 0.5) * 2;
+    this.r = Math.random() + 0.5;
+    this.vx = (Math.random() - 0.5) * 5;
+    this.vy = (Math.random() - 0.5) * 5;
     this.accX = 0;
     this.accY = 0;
     this.friction = Math.random() * 0.05 + 0.9;
 
-    this.color = "#fff";
+    this.color = colors[Math.floor(Math.random() * 3)];
   }
 
   Particle.prototype.render = function () {
@@ -48,7 +50,7 @@ function Canvas(_title) {
     var b = this.y - mouse.y;
 
     var distance = Math.sqrt(a * a + b * b);
-    if (distance < radius * 20) {
+    if (distance < radius * 30) {
       this.accX = (this.x - mouse.x) / 100;
       this.accY = (this.y - mouse.y) / 100;
       this.vx += this.accX;
@@ -88,8 +90,8 @@ function Canvas(_title) {
     ctx.globalCompositeOperation = "screen";
 
     particles = [];
-    for (var i = 0; i < ww; i += Math.round(ww / 200)) {
-      for (var j = 0; j < wh; j += Math.round(ww / 200)) {
+    for (var i = 0; i < ww; i += Math.round(ww / 300)) {
+      for (var j = 0; j < wh; j += Math.round(ww / 300)) {
         if (data[(i + j * ww) * 4 + 3] > 200) {
           particles.push(new Particle(i, j + 13));
         }

@@ -1,11 +1,13 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Title from "./Title";
+
+import InfoImg from "../../images/linode-brands.svg";
+import ContactImg from "../../images/circle-nodes-solid.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,19 +18,60 @@ const ListWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: yellow;
+  padding-right: 50px;
+`;
+const Button = styled.button`
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+  & > img {
+    width: 30px;
+    height: 30px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+      brightness(102%) contrast(102%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
+  }
+  & > h1 {
+    width: 70px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  &:hover > img {
+    transform: translate(-50%, -70%);
+  }
+  &:hover > h1 {
+    opacity: 1;
+    transform: translate(-50%, 50%);
+  }
 `;
 
-function Header() {
-  const [index, setIndex] = useState(1);
+interface IHeader {
+  title: string;
+}
+function Header({ title }: IHeader) {
   return (
     <Wrapper>
-      <Title title={"No." + index} />
-      <ListWrapper onClick={() => setIndex((prev) => prev + 1)}>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>Click me!</span>
+      <Title title={title} />
+      <ListWrapper>
+        <Button>
+          <img src={InfoImg} />
+          <h1>Site Info</h1>
+        </Button>
+        <Button>
+          <img src={ContactImg} />
+          <h1>Contact</h1>
+        </Button>
       </ListWrapper>
     </Wrapper>
   );
