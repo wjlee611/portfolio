@@ -70,7 +70,7 @@ function Header({ title }: IHeader) {
         </Button>
         <Button>
           <img src={ContactImg} />
-          <h1>Contact</h1>
+          <h1>Links</h1>
         </Button>
       </ListWrapper>
     </Wrapper>

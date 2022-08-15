@@ -6,10 +6,9 @@ function Canvas() {
     mouse = { x: 0, y: 0 },
     radius = 1;
 
-  var copy = document.querySelector("#copy");
-  var title = copy.value;
+  var title = document.querySelector("#copy").value;
 
-  var colors = ["#fff", "#aaa", "#777"];
+  var colors = ["#fff", "#ccc", "#aaa"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
@@ -21,7 +20,7 @@ function Canvas() {
       x: x,
       y: y,
     };
-    this.r = Math.random() + 0.5;
+    this.r = Math.random() + 1;
     this.vx = (Math.random() - 0.5) * 5;
     this.vy = (Math.random() - 0.5) * 5;
     this.accX = 0;
@@ -78,7 +77,7 @@ function Canvas() {
 
   function initScene() {
     setTimeout(() => {
-      var title = document.querySelector("#copy").value;
+      title = document.querySelector("#copy").value;
 
       ww = canvas.width = 400;
       wh = canvas.height = 100;
@@ -94,8 +93,8 @@ function Canvas() {
       ctx.globalCompositeOperation = "screen";
 
       particles = [];
-      for (var i = 0; i < ww; i += Math.round(ww / 300)) {
-        for (var j = 0; j < wh; j += Math.round(ww / 300)) {
+      for (var i = 0; i < ww; i += Math.round(ww / 250)) {
+        for (var j = 0; j < wh; j += Math.round(ww / 250)) {
           if (data[(i + j * ww) * 4 + 3] > 200) {
             particles.push(new Particle(i, j + 13));
           }
@@ -113,13 +112,10 @@ function Canvas() {
     }
   }
 
-  copy.addEventListener("change", initScene);
-  document
-    .querySelector("#next_btn")
-    .addEventListener("click", () => initScene());
-  document
-    .querySelector("#prev_btn")
-    .addEventListener("click", () => initScene());
+  document.querySelector("#nav_1").addEventListener("click", () => initScene());
+  document.querySelector("#nav_2").addEventListener("click", () => initScene());
+  document.querySelector("#nav_3").addEventListener("click", () => initScene());
+  document.querySelector("#nav_4").addEventListener("click", () => initScene());
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("touchmove", onTouchMove);
   window.addEventListener("touchend", onTouchEnd);
