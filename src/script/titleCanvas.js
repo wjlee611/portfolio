@@ -8,7 +8,7 @@ function Canvas() {
 
   var title = document.querySelector("#copy").value;
 
-  var colors = ["#fff", "#ccc", "#aaa"];
+  var colors = ["#fff", "#ccc", "#22bbff"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
