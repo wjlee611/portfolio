@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/portfolio/static/js/main.ada39ca6.js",
+    "static/media/background.jpg": "/portfolio/static/media/background.24aaaa1654f269624896.jpg",
+    "static/media/linode-brands.svg": "/portfolio/static/media/linode-brands.efc1660b2a56fb30d41f86130cb58e6b.svg",
+    "static/media/circle-nodes-solid.svg": "/portfolio/static/media/circle-nodes-solid.b08973c009e5d05f66078bb9ffb3e072.svg",
+    "index.html": "/portfolio/index.html",
+    "main.ada39ca6.js.map": "/portfolio/static/js/main.ada39ca6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ada39ca6.js"
+  ]
+}
