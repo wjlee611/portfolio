@@ -1,4 +1,4 @@
-function Canvas(_title) {
+function Canvas() {
   var canvas = document.querySelector("#scene"),
     ctx = canvas.getContext("2d"),
     particles = [],
@@ -6,7 +6,8 @@ function Canvas(_title) {
     mouse = { x: 0, y: 0 },
     radius = 1;
 
-  var title = _title;
+  var copy = document.querySelector("#copy");
+  var title = copy.value;
 
   var colors = ["#fff", "#aaa", "#777"];
 
@@ -76,28 +77,32 @@ function Canvas(_title) {
   }
 
   function initScene() {
-    ww = canvas.width = 400;
-    wh = canvas.height = 100;
+    setTimeout(() => {
+      var title = document.querySelector("#copy").value;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ww = canvas.width = 400;
+      wh = canvas.height = 100;
 
-    ctx.font = "bold " + ww / 10 + "px sans-serif";
-    ctx.textAlign = "start";
-    ctx.fillText(title, 50, wh / 2);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    var data = ctx.getImageData(0, 0, ww, wh).data;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.globalCompositeOperation = "screen";
+      ctx.font = "bold " + ww / 10 + "px sans-serif";
+      ctx.textAlign = "start";
+      ctx.fillText(title, 50, wh / 2);
 
-    particles = [];
-    for (var i = 0; i < ww; i += Math.round(ww / 300)) {
-      for (var j = 0; j < wh; j += Math.round(ww / 300)) {
-        if (data[(i + j * ww) * 4 + 3] > 200) {
-          particles.push(new Particle(i, j + 13));
+      var data = ctx.getImageData(0, 0, ww, wh).data;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = "screen";
+
+      particles = [];
+      for (var i = 0; i < ww; i += Math.round(ww / 300)) {
+        for (var j = 0; j < wh; j += Math.round(ww / 300)) {
+          if (data[(i + j * ww) * 4 + 3] > 200) {
+            particles.push(new Particle(i, j + 13));
+          }
         }
       }
-    }
-    amount = particles.length;
+      amount = particles.length;
+    }, 200);
   }
 
   function render(a) {
@@ -108,6 +113,13 @@ function Canvas(_title) {
     }
   }
 
+  copy.addEventListener("change", initScene);
+  document
+    .querySelector("#next_btn")
+    .addEventListener("click", () => initScene());
+  document
+    .querySelector("#prev_btn")
+    .addEventListener("click", () => initScene());
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("touchmove", onTouchMove);
   window.addEventListener("touchend", onTouchEnd);

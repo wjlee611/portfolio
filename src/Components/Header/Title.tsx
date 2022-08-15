@@ -13,10 +13,14 @@ interface ITitle {
   title: string;
 }
 function Title({ title }: ITitle) {
-  const [opa, setOpa] = useState(0);
+  const [opa, setOpa] = useState(1);
   useEffect(() => {
+    Canvas();
+  }, []);
+  useEffect(() => {
+    setOpa(0);
+    document.querySelector<any>("#copy").value = title;
     setTimeout(() => {
-      Canvas(title);
       setOpa(1);
     }, 200);
     return () => {

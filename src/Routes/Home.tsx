@@ -38,8 +38,12 @@ function Home() {
   return (
     <Wrapper>
       <div style={{ position: "fixed", top: 100, right: 0 }}>
-        <button onClick={onClickNext}>Next</button>
-        <button onClick={onClickPrev}>Prev</button>
+        <button id="next_btn" onClick={onClickNext}>
+          Next
+        </button>
+        <button id="prev_btn" onClick={onClickPrev}>
+          Prev
+        </button>
       </div>
       <Header
         title={view === 1 ? "Dev. Woong" : view === 2 ? "Time Line" : ""}
