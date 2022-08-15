@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   position: fixed;
   top: 0;
+  z-index: 3;
 `;
 const ListWrapper = styled.div`
   height: 100%;

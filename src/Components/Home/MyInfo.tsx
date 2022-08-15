@@ -4,7 +4,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding-top: 100px;
-  background-color: #333;
+  background-color: #33333355;
+  color: white;
 `;
 
 function MyInfo() {

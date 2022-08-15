@@ -1,5 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+
+import backgroundImg from "./images/background.jpg";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -57,10 +59,20 @@ body {
 	overflow: hidden;
 }
 `;
+const BG = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${backgroundImg});
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+`;
 
 function App() {
   return (
     <>
+      <BG />
       <GlobalStyle />
       <Router />
     </>

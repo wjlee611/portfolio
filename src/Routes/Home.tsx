@@ -8,6 +8,7 @@ import MyMoreInfo from "../Components/Home/MyMoreInfo";
 import Projects from "../Components/Home/Projects";
 import TimeLine from "../Components/Home/TimeLine";
 import HomeNav from "../Components/Navigator/HomeNav";
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;

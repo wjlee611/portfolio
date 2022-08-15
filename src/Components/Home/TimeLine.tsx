@@ -4,7 +4,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding-top: 100px;
-  background-color: #222;
+  background-color: #22222255;
+  color: white;
 `;
 
 function TimeLine() {

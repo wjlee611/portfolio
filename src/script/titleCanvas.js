@@ -8,7 +8,7 @@ function Canvas() {
 
   var title = document.querySelector("#copy").value;
 
-  var colors = ["#fff", "#ccc", "#22bbff"];
+  var colors = ["#aaeeff", "#66ddff", "#22bbff"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
@@ -93,8 +93,8 @@ function Canvas() {
       ctx.globalCompositeOperation = "screen";
 
       particles = [];
-      for (var i = 0; i < ww; i += Math.round(ww / 250)) {
-        for (var j = 0; j < wh; j += Math.round(ww / 250)) {
+      for (var i = 0; i < ww; i += Math.round(ww / 270)) {
+        for (var j = 0; j < wh; j += Math.round(ww / 270)) {
           if (data[(i + j * ww) * 4 + 3] > 200) {
             particles.push(new Particle(i, j + 13));
           }
