@@ -48,17 +48,19 @@ function Home() {
         }
       />
       <HomeNav />
-      <div ref={refInfo}>
-        <MyInfo />
-      </div>
-      <div ref={refMInfo}>
-        <MyMoreInfo />
-      </div>
-      <div ref={refProj}>
-        <Projects />
-      </div>
-      <div ref={refTL}>
-        <TimeLine />
+      <div style={{ width: "100%", position: "absolute", top: 0, zIndex: 1 }}>
+        <div ref={refInfo}>
+          <MyInfo />
+        </div>
+        <div ref={refMInfo}>
+          <MyMoreInfo />
+        </div>
+        <div ref={refProj}>
+          <Projects />
+        </div>
+        <div ref={refTL}>
+          <TimeLine />
+        </div>
       </div>
     </Wrapper>
   );

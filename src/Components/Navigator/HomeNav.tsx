@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   right: 0;
   top: 50%;
   transform: translate(0, -50%);
+  z-index: 2;
 `;
 const Button = styled.button<{ isSelected: boolean }>`
   width: 150px;
@@ -40,12 +41,15 @@ const Button = styled.button<{ isSelected: boolean }>`
     right: 0;
     z-index: 2;
   }
-  &:hover > div {
-    width: 170px;
-  }
   & > div {
-    width: ${(props) => (props.isSelected ? "170px" : "0")};
-    transition: width 0.3s cubic-bezier(0, 0.5, 0.5, 1);
+    width: 170px;
+    transform: ${(props) =>
+      props.isSelected ? "translateX(0%)" : "translateX(100%)"};
+    transition: transform 0.3s cubic-bezier(0, 0.5, 0.5, 1);
+    will-change: transform;
+  }
+  &:hover > div {
+    transform: translateX(0%);
   }
 `;
 const BtnBG = styled.div`
