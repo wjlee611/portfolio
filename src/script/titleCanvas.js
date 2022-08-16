@@ -20,7 +20,7 @@ function Canvas() {
       x: x,
       y: y,
     };
-    this.r = Math.random() + 1;
+    this.r = Math.random() + 1.7;
     this.vx = (Math.random() - 0.5) * 5;
     this.vy = (Math.random() - 0.5) * 5;
     this.accX = 0;
@@ -93,8 +93,8 @@ function Canvas() {
       ctx.globalCompositeOperation = "screen";
 
       particles = [];
-      for (var i = 0; i < ww; i += Math.round(ww / 270)) {
-        for (var j = 0; j < wh; j += Math.round(ww / 270)) {
+      for (var i = 0; i < ww; i += 2) {
+        for (var j = 0; j < wh; j += 2) {
           if (data[(i + j * ww) * 4 + 3] > 200) {
             particles.push(new Particle(i, j + 13));
           }

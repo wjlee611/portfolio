@@ -107,4 +107,8 @@ export const conf: any = {
     },
   },
   retina_detect: true,
+  style: {
+    position: "absolute",
+    top: 0,
+  },
 };

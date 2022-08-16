@@ -22,18 +22,6 @@ const ParticleWrapper = styled.div<{ isSelected: number }>`
   left: 0;
   z-index: 1;
   overflow: hidden;
-  & > div > canvas {
-    transform: ${(props) =>
-      props.isSelected === 1
-        ? "translateY(0%)"
-        : props.isSelected === 2
-        ? "translateY(-100%)"
-        : props.isSelected === 3
-        ? "translateY(-200%)"
-        : "translateY(-300%)"};
-    transition: transform 0.7s ease-in-out;
-    will-change: transform;
-  }
 `;
 const ContentWrapper = styled.div`
   width: 100%;
@@ -55,6 +43,7 @@ function MyInfo() {
       <ParticleWrapper isSelected={view}>
         <Particles
           id="tsparticles"
+          canvasClassName="info_canvas"
           init={particlesInit}
           options={{ ...conf }}
         />
