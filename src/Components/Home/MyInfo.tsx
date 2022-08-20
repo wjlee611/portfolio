@@ -42,8 +42,8 @@ function MyInfo() {
     <Wrapper>
       <ParticleWrapper isSelected={view}>
         <Particles
-          id="tsparticles"
-          canvasClassName="info_canvas"
+          // id="tsparticles"
+          // canvasClassName="info_canvas"
           init={particlesInit}
           options={{ ...conf }}
         />

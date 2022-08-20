@@ -108,7 +108,10 @@ export const conf: any = {
   },
   retina_detect: true,
   style: {
+    width: "calc(100vw + 340px)",
+    height: "calc(100vh + 340px)",
     position: "absolute",
-    top: 0,
+    top: "-170px",
+    left: "-170px",
   },
 };

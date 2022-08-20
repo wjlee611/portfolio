@@ -57,6 +57,7 @@ table {
 }
 body {
 	overflow: hidden;
+  background-color: #333;
 }
 `;
 const BG = styled.div`
