@@ -26,11 +26,32 @@ const ParticleWrapper = styled.div<{ isSelected: number }>`
 const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 100px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
+
+  & > span,
+  & > div > span {
+    font-size: 64px;
+    display: flex;
+  }
+  & > div {
+    display: flex;
+    align-items: flex-end;
+  }
+  & > div > span:first-child {
+    font-size: 128px;
+    font-weight: 700;
+    margin-right: 20px;
+  }
+  & > div > span:last-child {
+    margin-bottom: 10px;
+  }
 `;
 
 function MyInfo() {
@@ -41,15 +62,14 @@ function MyInfo() {
   return (
     <Wrapper>
       <ParticleWrapper isSelected={view}>
-        <Particles
-          // id="tsparticles"
-          // canvasClassName="info_canvas"
-          init={particlesInit}
-          options={{ ...conf }}
-        />
+        <Particles init={particlesInit} options={{ ...conf }} />
       </ParticleWrapper>
       <ContentWrapper>
-        <h1>MyInfo</h1>
+        <span>Hello!</span>
+        <div>
+          <span>Woong</span>
+          <span>is here!</span>
+        </div>
       </ContentWrapper>
     </Wrapper>
   );
