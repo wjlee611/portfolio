@@ -8,7 +8,7 @@ function Canvas() {
 
   var title = document.querySelector("#copy").value;
 
-  var colors = ["#aaeeff", "#66ddff", "#22bbff"];
+  var colors = ["#aaeeff", "#66ddff", "#ffffff"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
@@ -20,7 +20,7 @@ function Canvas() {
       x: x,
       y: y,
     };
-    this.r = Math.random() * 0.5 + 2;
+    this.r = 1;
     this.vx = (Math.random() - 0.5) * 5;
     this.vy = (Math.random() - 0.5) * 5;
     this.accX = 0;
@@ -84,7 +84,7 @@ function Canvas() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = ww / 10 + "px Verdana";
+      ctx.font = "400 " + ww / 10 + "px Verdana";
       ctx.textAlign = "start";
       ctx.fillText(title, 50, wh / 2);
 
@@ -93,9 +93,9 @@ function Canvas() {
       ctx.globalCompositeOperation = "screen";
 
       particles = [];
-      for (var i = 0; i < ww; i += 2) {
-        for (var j = 0; j < wh; j += 2) {
-          if (data[(i + j * ww) * 4 + 3] > 200) {
+      for (var i = 0; i < ww; i += 3) {
+        for (var j = 0; j < wh; j += 3) {
+          if (data[(i + j * ww) * 4 + 3] > 250) {
             particles.push(new Particle(i, j + 13));
           }
         }

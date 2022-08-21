@@ -61,13 +61,13 @@ function Home() {
         <Header
           title={
             view === 1
-              ? "Dev. Woong"
+              ? "DEV. WOONG"
               : view === 2
-              ? "Information"
+              ? "INFOMATION"
               : view === 3
-              ? "Projects"
+              ? "PROJECTS"
               : view === 4
-              ? "Time Line"
+              ? "TIME LINE"
               : ""
           }
         />
