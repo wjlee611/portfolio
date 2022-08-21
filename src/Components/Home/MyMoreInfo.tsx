@@ -3,14 +3,15 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import WoongImg from "../../images/woong.jpeg";
+import EmailForm from "./EmailForm";
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  padding-top: 150px;
-  padding-right: 200px;
+  padding-right: 300px;
   background-color: #22222255;
   display: flex;
+  align-items: center;
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
@@ -25,6 +26,9 @@ const ContentsWrapper = styled.div`
   align-items: center;
   color: white;
   position: relative;
+  &:first-child {
+    padding: 0 20px;
+  }
 `;
 const Hello = styled.div`
   display: flex;
@@ -71,8 +75,8 @@ const InfoNavBtnWrapper = styled.div`
 `;
 const InfoWrapper = styled(motion.div)`
   width: 100%;
-  height: 450px;
-  margin-bottom: 100px;
+  height: 100%;
+  min-height: 450px;
   padding-left: 10px;
   padding-top: 20px;
   position: absolute;
@@ -80,7 +84,7 @@ const InfoWrapper = styled(motion.div)`
 `;
 const DetailWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -130,6 +134,26 @@ const DetailWrapper = styled.div`
     margin-right: 50px;
   }
 `;
+const SendFrom = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  & > span:first-child {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #22bbff;
+    border-radius: 10px;
+    padding: 5px 0;
+    margin-right: 10px;
+  }
+  & > span:last-child {
+    font-weight: 700;
+  }
+`;
 
 const skills = [
   ["JavaScript", "TypeScript", "Python", "HTML", "CSS", "C", "C++"],
@@ -177,7 +201,11 @@ function MyMoreInfo() {
         <AnimatePresence>
           {selected === 1 ? (
             <InfoWrapper key="email" layoutId="infoWrap">
-              1
+              <SendFrom>
+                <span>Send to</span>
+                <span>wjlee611@gmail.com</span>
+              </SendFrom>
+              <EmailForm />
             </InfoWrapper>
           ) : selected === 2 ? (
             <InfoWrapper key="etc" layoutId="infoWrap">
