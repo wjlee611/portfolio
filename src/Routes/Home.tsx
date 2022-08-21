@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { homeNavState } from "../atoms";
 import Header from "../Components/Header/Header";
+import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
 import MyMoreInfo from "../Components/Home/MyMoreInfo";
 import Projects from "../Components/Home/Projects";
@@ -27,6 +29,7 @@ const BG = styled.img`
 `;
 
 function Home() {
+  const [loaded, setLoaded] = useState(false);
   const view = useRecoilValue(homeNavState);
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -42,7 +45,18 @@ function Home() {
 
   return (
     <>
-      <BG src={backgroundImg} alt="bg" />
+      <AnimatePresence>
+        {loaded ? null : (
+          <motion.div
+            key="loaded"
+            exit={{ opacity: 0 }}
+            style={{ position: "fixed", zIndex: 10 }}
+          >
+            <LoadingScreen />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <BG src={backgroundImg} alt="bg" onLoad={() => setLoaded(true)} />
       <Wrapper>
         <Header
           title={

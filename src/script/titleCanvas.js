@@ -20,7 +20,7 @@ function Canvas() {
       x: x,
       y: y,
     };
-    this.r = Math.random() + 1.7;
+    this.r = Math.random() * 0.5 + 2;
     this.vx = (Math.random() - 0.5) * 5;
     this.vy = (Math.random() - 0.5) * 5;
     this.accX = 0;

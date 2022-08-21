@@ -10,8 +10,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   position: fixed;
   top: 0;
-  background-color: #333;
-  transition: opacity 0.2s linear;
+  background-color: #222;
 `;
 
 function LoadingScreen() {
