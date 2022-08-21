@@ -26,6 +26,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'Baloo Thambi 2', cursive;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -52,7 +53,6 @@ table {
 }
 * {
 	box-sizing: border-box;
-	font-family: 'Baloo Thambi 2', cursive;
 	-webkit-user-select:none;
   	-moz-user-select:none;
   	-ms-user-select:none;

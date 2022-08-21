@@ -1,13 +1,18 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
 import Title from "./Title";
 
 import InfoImg from "../../images/linode-brands.svg";
 import ContactImg from "../../images/circle-nodes-solid.svg";
+import GitHubImg from "../../images/github.svg";
+import BlogImg from "../../images/blog.svg";
+import YoutubeImg from "../../images/youtube.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +26,7 @@ const ListWrapper = styled.div`
   align-items: center;
   padding-right: 50px;
 `;
-const Button = styled.button`
+const Button = styled.button<{ isSelected: boolean }>`
   width: 70px;
   height: 70px;
   background-color: transparent;
@@ -30,23 +35,28 @@ const Button = styled.button`
   & > img {
     width: 30px;
     height: 30px;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
-      brightness(102%) contrast(102%);
+    filter: ${(props) =>
+      props.isSelected
+        ? "invert(68%) sepia(27%) saturate(6010%) hue-rotate(169deg) brightness(101%) contrast(104%)"
+        : "invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)"};
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: ${(props) =>
+      props.isSelected ? "translate(-50%, -70%)" : "translate(-50%, -50%)"};
     transition: transform 0.2s ease-out;
   }
   & > h1 {
     width: 70px;
-    color: white;
+    color: ${(props) => (props.isSelected ? "#22bbff" : "#ffffff")};
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    transform: ${(props) =>
+      props.isSelected ? "translate(-50%, 50%)" : "translate(-50%, -50%)"};
+    opacity: ${(props) => (props.isSelected ? 1 : 0)};
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out,
+      color 0.2s ease-out;
   }
   &:hover > img {
     transform: translate(-50%, -70%);
@@ -57,23 +67,142 @@ const Button = styled.button`
   }
 `;
 
+const DialogWrapper = styled(motion.div)`
+  background-color: #22bbff55;
+  color: white;
+  position: fixed;
+  z-index: 5;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+`;
+const SiteInfoWrapper = styled(DialogWrapper)`
+  width: 300px;
+  & > * {
+    margin-bottom: 5px;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+  & > a {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #88eeff;
+  }
+`;
+const LinkWrapper = styled(DialogWrapper)`
+  width: 70px;
+  height: 200px;
+  justify-content: space-between;
+`;
+const BackWrapper = styled(motion.div)`
+  width: 100vw;
+  height: calc(100vh - 100px);
+  position: fixed;
+  z-index: 4;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  backdrop-filter: blur(5px);
+  & > span {
+    color: white;
+    margin-bottom: 100px;
+  }
+`;
+
+const LinkImage = styled.img`
+  width: 50px;
+  height: 50px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+    brightness(102%) contrast(102%);
+`;
+
 interface IHeader {
   title: string;
 }
 function Header({ title }: IHeader) {
+  const [selected, setSelected] = useState(0);
   return (
     <Wrapper>
       <Title title={title} />
       <ListWrapper>
-        <Button>
+        <Button isSelected={selected === 1} onClick={() => setSelected(1)}>
           <img src={InfoImg} alt="info" />
           <h1>Site Info</h1>
         </Button>
-        <Button>
+        <Button isSelected={selected === 2} onClick={() => setSelected(2)}>
           <img src={ContactImg} alt="contact" />
           <h1>Links</h1>
         </Button>
       </ListWrapper>
+      <AnimatePresence>
+        {selected === 1 ? (
+          <SiteInfoWrapper
+            key="info"
+            layout="position"
+            initial={{ opacity: 0, top: 80 }}
+            animate={{ opacity: 1, top: 100 }}
+            exit={{ opacity: 0, top: 105 }}
+          >
+            <span>Developed by. Woong</span>
+            <a
+              href="https://github.com/wjlee611/portfolio"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>&gt; View source code </span>
+            </a>
+            <span>Title paricle source: Mamboleoo</span>
+            <span>Font: Baloo Thambi 2 @Google Fonts</span>
+            <span>B.G. image: Hypergryph - Arknights</span>
+          </SiteInfoWrapper>
+        ) : selected === 2 ? (
+          <LinkWrapper
+            key="link"
+            layout="position"
+            initial={{ opacity: 0, top: 80 }}
+            animate={{ opacity: 1, top: 100 }}
+            exit={{ opacity: 0, top: 105 }}
+          >
+            <a
+              href="https://github.com/wjlee611"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkImage src={GitHubImg} alt="github" />
+            </a>
+            <a
+              href="https://with611.tistory.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkImage src={BlogImg} alt="blog" />
+            </a>
+            <a
+              href="https://www.youtube.com/c/WITH611"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkImage src={YoutubeImg} alt="youtube" />
+            </a>
+          </LinkWrapper>
+        ) : null}
+        {selected === 0 ? null : (
+          <BackWrapper
+            key="back"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelected(0)}
+          >
+            <span>Click anywhere to close dialog</span>
+          </BackWrapper>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 }

@@ -1,7 +1,7 @@
 export const conf: any = {
   particles: {
     number: {
-      value: 28,
+      value: 20,
     },
     color: {
       value: "#ffffff",
@@ -40,7 +40,7 @@ export const conf: any = {
     },
     line_linked: {
       enable: true,
-      distance: 250,
+      distance: 200,
       color: "#ffffff",
       opacity: 0.4,
       width: 1,

@@ -39,7 +39,6 @@ const ContentWrapper = styled.div`
   & > div > span {
     font-size: 64px;
     display: flex;
-    font-family: "Baloo Thambi 2", cursive;
   }
   & > div {
     display: flex;
