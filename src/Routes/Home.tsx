@@ -58,7 +58,7 @@ function Home() {
   return (
     <>
       <AnimatePresence>
-        {loaded ? null : (
+        {loaded >= 6 ? null : (
           <motion.div
             key="loaded"
             exit={{ opacity: 0 }}
