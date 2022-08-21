@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: 4;
+  backdrop-filter: blur(5px);
 `;
 const ListWrapper = styled.div`
   height: 100%;
@@ -112,7 +113,7 @@ const BackWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.8);
   & > span {
     color: white;
     margin-bottom: 100px;
@@ -213,8 +214,18 @@ function Header({ title, assets }: IHeader) {
           <BackWrapper
             key="back"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.2,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+              },
+            }}
             onClick={() => setSelected(0)}
           >
             <span>Click anywhere to close dialog</span>
