@@ -8,10 +8,11 @@ import EmailForm from "./EmailForm";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  padding-top: calc(25vh);
   padding-right: 300px;
   background-color: #22222255;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
