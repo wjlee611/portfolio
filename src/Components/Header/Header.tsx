@@ -66,11 +66,11 @@ function Header({ title }: IHeader) {
       <Title title={title} />
       <ListWrapper>
         <Button>
-          <img src={InfoImg} />
+          <img src={InfoImg} alt="info" />
           <h1>Site Info</h1>
         </Button>
         <Button>
-          <img src={ContactImg} />
+          <img src={ContactImg} alt="contact" />
           <h1>Links</h1>
         </Button>
       </ListWrapper>

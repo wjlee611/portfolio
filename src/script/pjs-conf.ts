@@ -1,43 +1,52 @@
 export const conf: any = {
   particles: {
     number: {
-      value: 40,
+      value: 15,
       density: {
         enable: true,
-        value_area: 800,
+        value_area: 700,
       },
     },
     color: {
       value: "#ffffff",
     },
     shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000",
-      },
-      polygon: {
-        nb_sides: 5,
-      },
-      image: {
-        src: "img/github.svg",
-        width: 100,
-        height: 100,
+      type: "character",
+      character: {
+        value: [
+          "W",
+          "O",
+          "N",
+          "G",
+          "ISFJ-T",
+          "Scrupulous",
+          "Enthusiastic",
+          "JS",
+          "TS",
+          "Python",
+          "Node.js",
+          "React.js",
+          "Back-end",
+          "Web-Front",
+        ],
+        font: "Baloo Thambi 2",
+        style: "",
+        weight: "400",
       },
     },
     opacity: {
-      value: 0.5,
+      value: 0.7,
       random: false,
       anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
+        enable: true,
+        speed: 0.3,
+        opacity_min: 0.5,
         sync: false,
       },
     },
     size: {
-      value: 1,
-      random: true,
+      value: 10,
+      random: false,
       anim: {
         enable: false,
         speed: 40,
@@ -47,7 +56,7 @@ export const conf: any = {
     },
     line_linked: {
       enable: true,
-      distance: 170,
+      distance: 200,
       color: "#ffffff",
       opacity: 0.4,
       width: 1,
@@ -59,7 +68,7 @@ export const conf: any = {
       random: false,
       straight: false,
       out_mode: "out",
-      bounce: false,
+      bounce: true,
       attract: {
         enable: false,
         rotateX: 600,
@@ -108,10 +117,10 @@ export const conf: any = {
   },
   retina_detect: true,
   style: {
-    width: "calc(100vw + 340px)",
-    height: "calc(100vh + 340px)",
+    width: "calc(100vw + 400px)",
+    height: "calc(100vh + 400px)",
     position: "absolute",
-    top: "-170px",
-    left: "-170px",
+    top: "-200px",
+    left: "-200px",
   },
 };

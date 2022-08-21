@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import useTransitionSuspense from "./script/useTransitionSuspense";
 import LoadingScreen from "./Components/Home/LoadingScreen";
 const Home = React.lazy(() => import("./Routes/Home"));
 
@@ -15,20 +14,14 @@ const Wrapper = styled.div`
 `;
 
 function Router() {
-  const { isPending, isFullfilled, DelayedSuspense } = useTransitionSuspense({
-    delay: 200,
-  });
   return (
     <Wrapper>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/">
-            <>
-              {isPending && <LoadingScreen isDisappear={isFullfilled} />}
-              <DelayedSuspense>
-                <Home />
-              </DelayedSuspense>
-            </>
+            <React.Suspense fallback={<LoadingScreen />}>
+              <Home />
+            </React.Suspense>
           </Route>
         </Switch>
       </BrowserRouter>

@@ -84,7 +84,7 @@ function Canvas() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = "bold " + ww / 10 + "px sans-serif";
+      ctx.font = ww / 10 + "px Verdana";
       ctx.textAlign = "start";
       ctx.fillText(title, 50, wh / 2);
 

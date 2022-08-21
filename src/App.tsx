@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,7 +52,11 @@ table {
 }
 * {
 	box-sizing: border-box;
-	font-family: 'PT Sans', sans-serif;
+	font-family: 'Baloo Thambi 2', cursive;
+	-webkit-user-select:none;
+  	-moz-user-select:none;
+  	-ms-user-select:none;
+  	user-select:none;
 }
 body {
 	overflow: hidden;
