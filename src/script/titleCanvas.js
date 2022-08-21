@@ -8,7 +8,8 @@ function Canvas() {
 
   var title = document.querySelector("#copy").value;
 
-  var colors = ["#aaeeff", "#66ddff", "#ffffff"];
+  // var colors = ["#aaeeff", "#66ddff", "#ffffff"];
+  var colors = ["#ffffff99", "#ffffff99", "#ffffff99"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
@@ -84,7 +85,7 @@ function Canvas() {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = "400 " + ww / 10 + "px Verdana";
+      ctx.font = "700 " + ww / 10 + "px Verdana";
       ctx.textAlign = "start";
       ctx.fillText(title, 50, wh / 2);
 

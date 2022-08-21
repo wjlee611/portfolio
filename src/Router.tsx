@@ -19,7 +19,7 @@ function Router() {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/">
-            <React.Suspense fallback={<LoadingScreen />}>
+            <React.Suspense fallback={<LoadingScreen status={10} />}>
               <Home />
             </React.Suspense>
           </Route>

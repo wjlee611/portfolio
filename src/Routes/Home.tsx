@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useRef } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { homeNavState } from "../atoms";
+import { homeNavState, loadedAsset } from "../atoms";
 import Header from "../Components/Header/Header";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
@@ -10,7 +10,13 @@ import MyMoreInfo from "../Components/Home/MyMoreInfo";
 import Projects from "../Components/Home/Projects";
 import TimeLine from "../Components/Home/TimeLine";
 import HomeNav from "../Components/Navigator/HomeNav";
+
 import backgroundImg from "../images/background.jpg";
+import InfoImg from "../images/linode-brands.svg";
+import ContactImg from "../images/circle-nodes-solid.svg";
+import GitHubImg from "../images/github.svg";
+import BlogImg from "../images/blog.svg";
+import YoutubeImg from "../images/youtube.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -27,9 +33,15 @@ const BG = styled.img`
   top: 0;
   z-index: 1;
 `;
+const ImgAsset = styled.div`
+  position: fixed;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+`;
 
 function Home() {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const view = useRecoilValue(homeNavState);
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -52,11 +64,42 @@ function Home() {
             exit={{ opacity: 0 }}
             style={{ position: "fixed", zIndex: 10 }}
           >
-            <LoadingScreen />
+            <LoadingScreen status={40} />
           </motion.div>
         )}
       </AnimatePresence>
-      <BG src={backgroundImg} alt="bg" onLoad={() => setLoaded(true)} />
+      <BG
+        src={backgroundImg}
+        alt="bg"
+        onLoad={() => setLoaded((prev) => prev + 1)}
+      />
+      <ImgAsset className="Image_Assets_Preload">
+        <img
+          src={InfoImg}
+          alt="InfoImg"
+          onLoad={() => setLoaded((prev) => prev + 1)}
+        />
+        <img
+          src={ContactImg}
+          alt="ContactImg"
+          onLoad={() => setLoaded((prev) => prev + 1)}
+        />
+        <img
+          src={GitHubImg}
+          alt="GitHubImg"
+          onLoad={() => setLoaded((prev) => prev + 1)}
+        />
+        <img
+          src={BlogImg}
+          alt="BlogImg"
+          onLoad={() => setLoaded((prev) => prev + 1)}
+        />
+        <img
+          src={YoutubeImg}
+          alt="YoutubeImg"
+          onLoad={() => setLoaded((prev) => prev + 1)}
+        />
+      </ImgAsset>
       <Wrapper>
         <Header
           title={
@@ -70,6 +113,7 @@ function Home() {
               ? "TIME LINE"
               : ""
           }
+          assets={[InfoImg, ContactImg, GitHubImg, BlogImg, YoutubeImg]}
         />
         <HomeNav />
         <div style={{ width: "100%", position: "absolute", top: 0, zIndex: 1 }}>

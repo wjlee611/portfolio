@@ -7,6 +7,7 @@ const CanvasWrapper = styled.canvas<{ opa: number }>`
   height: 100px;
   opacity: ${(props) => props.opa};
   transition: opacity 0.2s linear;
+  z-index: 6;
 `;
 
 interface ITitle {

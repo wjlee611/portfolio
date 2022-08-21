@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import Title from "./Title";
 
-import InfoImg from "../../images/linode-brands.svg";
-import ContactImg from "../../images/circle-nodes-solid.svg";
-import GitHubImg from "../../images/github.svg";
-import BlogImg from "../../images/blog.svg";
-import YoutubeImg from "../../images/youtube.svg";
+// import InfoImg from "../../images/linode-brands.svg";
+// import ContactImg from "../../images/circle-nodes-solid.svg";
+// import GitHubImg from "../../images/github.svg";
+// import BlogImg from "../../images/blog.svg";
+// import YoutubeImg from "../../images/youtube.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -18,13 +18,14 @@ const Wrapper = styled.div`
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 3;
+  z-index: 4;
 `;
 const ListWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
   padding-right: 50px;
+  z-index: 5;
 `;
 const Button = styled.button<{ isSelected: boolean }>`
   width: 70px;
@@ -81,7 +82,7 @@ const DialogWrapper = styled(motion.div)`
 const SiteInfoWrapper = styled(DialogWrapper)`
   width: 300px;
   & > * {
-    margin-bottom: 5px;
+    margin-top: 5px;
   }
   & > *:last-child {
     margin-bottom: 0;
@@ -95,15 +96,19 @@ const SiteInfoWrapper = styled(DialogWrapper)`
 `;
 const LinkWrapper = styled(DialogWrapper)`
   width: 70px;
-  height: 200px;
-  justify-content: space-between;
+  & > a {
+    margin-top: 5px;
+  }
+  & > a:first-child {
+    margin: 7px 0;
+  }
 `;
 const BackWrapper = styled(motion.div)`
   width: 100vw;
-  height: calc(100vh - 100px);
+  height: 100vh;
   position: fixed;
-  z-index: 4;
-  top: 100px;
+  z-index: 3;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -123,19 +128,32 @@ const LinkImage = styled.img`
 
 interface IHeader {
   title: string;
+  assets: string[];
 }
-function Header({ title }: IHeader) {
+function Header({ title, assets }: IHeader) {
   const [selected, setSelected] = useState(0);
   return (
     <Wrapper>
       <Title title={title} />
       <ListWrapper>
-        <Button isSelected={selected === 1} onClick={() => setSelected(1)}>
-          <img src={InfoImg} alt="info" />
+        <Button
+          isSelected={selected === 1}
+          onClick={() => {
+            if (selected === 1) setSelected(0);
+            else setSelected(1);
+          }}
+        >
+          <img src={assets[0]} alt="info" />
           <h1>Site Info</h1>
         </Button>
-        <Button isSelected={selected === 2} onClick={() => setSelected(2)}>
-          <img src={ContactImg} alt="contact" />
+        <Button
+          isSelected={selected === 2}
+          onClick={() => {
+            if (selected === 2) setSelected(0);
+            else setSelected(2);
+          }}
+        >
+          <img src={assets[1]} alt="contact" />
           <h1>Links</h1>
         </Button>
       </ListWrapper>
@@ -154,7 +172,7 @@ function Header({ title }: IHeader) {
               target="_blank"
               rel="noreferrer"
             >
-              <span>&gt; View source code </span>
+              <span>&gt; View source code @GitHub </span>
             </a>
             <span>Title paricle source: Mamboleoo</span>
             <span>Font: Baloo Thambi 2 @Google Fonts</span>
@@ -173,21 +191,21 @@ function Header({ title }: IHeader) {
               target="_blank"
               rel="noreferrer"
             >
-              <LinkImage src={GitHubImg} alt="github" />
+              <LinkImage src={assets[2]} alt="github" />
             </a>
             <a
               href="https://with611.tistory.com/"
               target="_blank"
               rel="noreferrer"
             >
-              <LinkImage src={BlogImg} alt="blog" />
+              <LinkImage src={assets[3]} alt="blog" />
             </a>
             <a
               href="https://www.youtube.com/c/WITH611"
               target="_blank"
               rel="noreferrer"
             >
-              <LinkImage src={YoutubeImg} alt="youtube" />
+              <LinkImage src={assets[4]} alt="youtube" />
             </a>
           </LinkWrapper>
         ) : null}
