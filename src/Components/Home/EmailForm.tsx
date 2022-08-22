@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -31,11 +33,10 @@ const EmailInputWrapper = styled.div`
     height: 30px;
     background-color: transparent;
     color: white;
-    font-family: "Baloo Thambi 2", cursive;
+    font-family: "Baloo Thambi 2", "Jua", cursive;
     font-size: 16px;
     font-weight: 700;
     border: none;
-    border-bottom: 1px solid white;
   }
   & > input:focus {
     outline: none;
@@ -73,7 +74,7 @@ const MessageInputWrapper = styled.div`
     height: 100%;
     background-color: transparent;
     color: white;
-    font-family: "Baloo Thambi 2", cursive;
+    font-family: "Baloo Thambi 2", "Jua", cursive;
     font-size: 16px;
     font-weight: 700;
     border: none;
@@ -99,16 +100,36 @@ const MessageInputWrapper = styled.div`
   & > textarea:focus {
     outline: none;
   }
-  & > input {
-    position: absolute;
-    top: -100px;
-    right: 20px;
-    color: white;
-    background-color: transparent;
-    border: 1px solid #22bbff;
-    border-radius: 5px;
-    padding: 5px 20px;
+  & > textarea::placeholder {
+    outline: none;
+    font-size: 16px;
   }
+`;
+const SubmitBtn = styled.input<{
+  submitStatus: "NORMAL" | "PROCESSING" | "SENDED" | "FAILED";
+}>`
+  width: 120px;
+  position: absolute;
+  top: -100px;
+  right: 20px;
+  color: white;
+  background-color: ${(props) =>
+    props.submitStatus === "SENDED"
+      ? "#53BF9D"
+      : props.submitStatus === "FAILED"
+      ? "#F94C66"
+      : "transparent"};
+  border: 1px solid
+    ${(props) =>
+      props.submitStatus === "SENDED"
+        ? "#53BF9D"
+        : props.submitStatus === "FAILED"
+        ? "#F94C66"
+        : "#22bbff"};
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-family: "Baloo Thambi 2", "Jua", cursive;
+  transition: background-color 0.3s ease-out, border 0.3s ease-out;
 `;
 
 const isValidEmail = (email: string) =>
@@ -126,12 +147,15 @@ function EmailForm() {
     register,
     handleSubmit,
     setError,
+    resetField,
     formState: { errors },
   } = useForm<IForm>();
+  const [submitStatus, setSubmitStatus] = useState<
+    "NORMAL" | "PROCESSING" | "SENDED" | "FAILED"
+  >("NORMAL");
 
   const handleValidation = ({ sendEmail, contents }: IForm) => {
     const isValid = isValidEmail(sendEmail);
-
     const validityChanged =
       (errors.sendEmail && isValid) || (!errors.sendEmail && !isValid);
     if (validityChanged) {
@@ -147,7 +171,36 @@ function EmailForm() {
         { shouldFocus: true }
       );
     } else {
-      console.log("valid email:", sendEmail, "\nmessage____\n", contents);
+      setSubmitStatus("PROCESSING");
+      emailjs
+        .send(
+          "service_oyprxjr",
+          "template_z91v8j5",
+          {
+            from_email: sendEmail,
+            message: contents.replace(/(?:\r\n|\r|\n)/g, "<br>"),
+          },
+          "P9tgfLoIAqkO--ytT"
+        )
+        .then(
+          function (response) {
+            setSubmitStatus("SENDED");
+            resetField("sendEmail");
+            resetField("contents");
+
+            setTimeout(() => {
+              setSubmitStatus("NORMAL");
+            }, 2000);
+          },
+          function (error) {
+            setSubmitStatus("FAILED");
+            console.log("FAILED...", error);
+
+            setTimeout(() => {
+              setSubmitStatus("NORMAL");
+            }, 2000);
+          }
+        );
     }
   };
 
@@ -171,10 +224,29 @@ function EmailForm() {
           <textarea
             id="message"
             {...register("contents")}
-            placeholder={`Hello Woong!`}
+            placeholder={`Hello Woong!\nPlease write message longer then 20.`}
             autoComplete="off"
           />
-          <input type="submit" />
+          <SubmitBtn
+            type="submit"
+            value={
+              submitStatus === "PROCESSING"
+                ? "Processing..."
+                : submitStatus === "SENDED"
+                ? "Sended!"
+                : submitStatus === "FAILED"
+                ? "Failed..."
+                : "Send Email"
+            }
+            disabled={
+              submitStatus === "PROCESSING" ||
+              submitStatus === "SENDED" ||
+              submitStatus === "FAILED"
+                ? true
+                : false
+            }
+            submitStatus={submitStatus}
+          />
         </MessageInputWrapper>
       </form>
     </Wrapper>

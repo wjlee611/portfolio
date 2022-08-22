@@ -68,6 +68,8 @@ const InfoNavBtnWrapper = styled.div`
     border: none;
     padding: 0 20px;
     color: white;
+    font-family: "Baloo Thambi 2", "Jua", cursive;
+    font-size: 16px;
   }
   & > div {
     width: 100%;

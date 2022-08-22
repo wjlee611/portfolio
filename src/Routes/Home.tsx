@@ -32,7 +32,8 @@ const ContentWrapper = styled.div`
   }
   position: relative;
   scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  overflow: hidden;
 `;
 const BG = styled.img`
   width: 100vw;
@@ -51,6 +52,7 @@ const ImgAsset = styled.div`
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const view = useRecoilValue(homeNavState);
+
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
   const refProj = useRef<null | HTMLDivElement>(null);
@@ -62,10 +64,6 @@ function Home() {
     if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
     if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
   }, [view]);
-
-  useEffect(() => {
-    console.log(refInfo, refMInfo, refProj, refTL);
-  }, [refInfo, refMInfo, refProj, refTL]);
 
   return (
     <Wrapper>
