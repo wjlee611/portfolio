@@ -3,32 +3,30 @@ function Canvas() {
     ctx = canvas.getContext("2d"),
     particles = [],
     amount = 0,
-    mouse = { x: 0, y: 0 },
-    radius = 1;
+    mouse = { x: 0, y: 0 };
 
   var title = document.querySelector("#copy").value;
 
   // var colors = ["#aaeeff", "#66ddff", "#ffffff"];
-  var colors = ["#ffffff99", "#ffffff99", "#ffffff99"];
 
   var ww = (canvas.width = 400);
   var wh = (canvas.height = 100);
 
   function Particle(x, y) {
-    this.x = title.length * 15 + Math.random() * 100 - 50;
-    this.y = wh / 2 + Math.random() * 10 - 5;
+    this.x = Math.round(title.length * 15 + Math.random() * 100 - 50);
+    this.y = Math.round(wh / 2 + Math.random() * 10 - 5);
     this.dest = {
       x: x,
       y: y,
     };
-    this.r = 1;
-    this.vx = (Math.random() - 0.5) * 5;
-    this.vy = (Math.random() - 0.5) * 5;
+    this.r = 2;
+    this.vx = Math.round((Math.random() - 0.5) * 4);
+    this.vy = Math.round((Math.random() - 0.5) * 4);
     this.accX = 0;
     this.accY = 0;
     this.friction = Math.random() * 0.05 + 0.9;
 
-    this.color = colors[Math.floor(Math.random() * 3)];
+    this.color = "#888";
   }
 
   Particle.prototype.render = function () {
@@ -44,14 +42,14 @@ function Canvas() {
 
     ctx.fillStyle = this.color;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+    ctx.rect(this.x, this.y, this.r, this.r);
     ctx.fill();
 
     var a = this.x - mouse.x;
     var b = this.y - mouse.y;
 
     var distance = Math.sqrt(a * a + b * b);
-    if (distance < radius * 30) {
+    if (distance < 30) {
       this.accX = (this.x - mouse.x) / 100;
       this.accY = (this.y - mouse.y) / 100;
       this.vx += this.accX;
@@ -71,7 +69,7 @@ function Canvas() {
     }
   }
 
-  function onTouchEnd(e) {
+  function onTouchEnd() {
     mouse.x = -9999;
     mouse.y = -9999;
   }
@@ -105,7 +103,7 @@ function Canvas() {
     }, 200);
   }
 
-  function render(a) {
+  function render() {
     requestAnimationFrame(render);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i < amount; i++) {

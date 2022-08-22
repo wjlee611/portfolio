@@ -86,7 +86,7 @@ const MessageInputWrapper = styled.div`
     }
     /* Track */
     &::-webkit-scrollbar-track {
-      background: #00000000;
+      background: #22bbff33;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
@@ -94,7 +94,7 @@ const MessageInputWrapper = styled.div`
     }
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: #116699;
+      background: #1788cc;
     }
   }
   & > textarea:focus {

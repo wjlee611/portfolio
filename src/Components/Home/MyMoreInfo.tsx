@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -86,7 +86,7 @@ const InfoWrapper = styled(motion.div)`
   position: absolute;
   top: 60px;
 `;
-const DetailWrapper = styled.div`
+const DetailWrapper = styled.div<{ scrollBar: boolean }>`
   width: 100%;
   height: 400px;
   display: flex;
@@ -99,7 +99,7 @@ const DetailWrapper = styled.div`
   }
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #00000000;
+    background: ${(props) => (props.scrollBar ? "#22bbff33" : "#22bbff00")};
   }
   /* Handle */
   &::-webkit-scrollbar-thumb {
@@ -107,7 +107,7 @@ const DetailWrapper = styled.div`
   }
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: #116699;
+    background: #1788cc;
   }
   & > div {
     width: 100%;
@@ -159,6 +159,26 @@ const SendFrom = styled.div`
   }
 `;
 
+const InfoWrapperVariants: Variants = {
+  init: { transform: "translateY(-10px)", opacity: 0 },
+  ani: {
+    transform: "translateY(0px)",
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+  exit: {
+    transform: "translateY(10px)",
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+};
+
 const skills = [
   ["JavaScript", "TypeScript", "Python", "HTML", "CSS", "C", "C++"],
   ["Node.js", "React.js"],
@@ -204,7 +224,13 @@ function MyMoreInfo() {
         </InfoNav>
         <AnimatePresence>
           {selected === 1 ? (
-            <InfoWrapper key="email" layoutId="infoWrap">
+            <InfoWrapper
+              key="email"
+              variants={InfoWrapperVariants}
+              initial="init"
+              animate="ani"
+              exit="exit"
+            >
               <SendFrom>
                 <span>Send to</span>
                 <span>wjlee611@gmail.com</span>
@@ -212,8 +238,14 @@ function MyMoreInfo() {
               <EmailForm />
             </InfoWrapper>
           ) : selected === 2 ? (
-            <InfoWrapper key="etc" layoutId="infoWrap">
-              <DetailWrapper>
+            <InfoWrapper
+              key="etc"
+              variants={InfoWrapperVariants}
+              initial="init"
+              animate="ani"
+              exit="exit"
+            >
+              <DetailWrapper scrollBar={false}>
                 {["Phone", "Kakao Id"].map((method) => (
                   <div key={method}>
                     <h1>{method}</h1>
@@ -225,8 +257,14 @@ function MyMoreInfo() {
               </DetailWrapper>
             </InfoWrapper>
           ) : (
-            <InfoWrapper key="skill" layoutId="infoWrap">
-              <DetailWrapper>
+            <InfoWrapper
+              key="skill"
+              variants={InfoWrapperVariants}
+              initial="init"
+              animate="ani"
+              exit="exit"
+            >
+              <DetailWrapper scrollBar={true}>
                 {["Programming Languages", "Frameworks", "Tools"].map(
                   (skill, idx) => (
                     <div key={skill}>
