@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/portfolio/static/js/main.6f60d47a.js",
-    "static/js/701.5cbf690d.chunk.js": "/portfolio/static/js/701.5cbf690d.chunk.js",
-    "static/js/662.73a67546.chunk.js": "/portfolio/static/js/662.73a67546.chunk.js",
+    "main.js": "/portfolio/static/js/main.15fdc303.js",
+    "static/js/701.2f33dc79.chunk.js": "/portfolio/static/js/701.2f33dc79.chunk.js",
+    "static/js/166.5fe580f0.chunk.js": "/portfolio/static/js/166.5fe580f0.chunk.js",
     "static/media/background.jpg": "/portfolio/static/media/background.24aaaa1654f269624896.jpg",
     "static/media/woong.jpeg": "/portfolio/static/media/woong.e135391ce6bd24d8c321.jpeg",
     "static/media/github.svg": "/portfolio/static/media/github.833b63e28cadf07403bc81451d30b858.svg",
@@ -11,11 +11,11 @@
     "static/media/linode-brands.svg": "/portfolio/static/media/linode-brands.efc1660b2a56fb30d41f86130cb58e6b.svg",
     "static/media/circle-nodes-solid.svg": "/portfolio/static/media/circle-nodes-solid.b08973c009e5d05f66078bb9ffb3e072.svg",
     "static/media/youtube.svg": "/portfolio/static/media/youtube.87350b41a36870581ed6bbca31d713b0.svg",
-    "main.6f60d47a.js.map": "/portfolio/static/js/main.6f60d47a.js.map",
-    "701.5cbf690d.chunk.js.map": "/portfolio/static/js/701.5cbf690d.chunk.js.map",
-    "662.73a67546.chunk.js.map": "/portfolio/static/js/662.73a67546.chunk.js.map"
+    "main.15fdc303.js.map": "/portfolio/static/js/main.15fdc303.js.map",
+    "701.2f33dc79.chunk.js.map": "/portfolio/static/js/701.2f33dc79.chunk.js.map",
+    "166.5fe580f0.chunk.js.map": "/portfolio/static/js/166.5fe580f0.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.6f60d47a.js"
+    "static/js/main.15fdc303.js"
   ]
 }
