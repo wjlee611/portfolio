@@ -21,10 +21,18 @@ import YoutubeImg from "../images/youtube.svg";
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+`;
+const ContentWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
   &::-webkit-scrollbar {
     width: 0;
     background: transparent;
   }
+  position: relative;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 `;
 const BG = styled.img`
   width: 100vw;
@@ -55,8 +63,12 @@ function Home() {
     if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
   }, [view]);
 
+  useEffect(() => {
+    console.log(refInfo, refMInfo, refProj, refTL);
+  }, [refInfo, refMInfo, refProj, refTL]);
+
   return (
-    <>
+    <Wrapper>
       <AnimatePresence>
         {loaded >= 6 ? null : (
           <motion.div
@@ -100,7 +112,7 @@ function Home() {
           onLoad={() => setLoaded((prev) => prev + 1)}
         />
       </ImgAsset>
-      <Wrapper>
+      <ContentWrapper>
         <Header
           title={
             view === 1
@@ -111,27 +123,34 @@ function Home() {
               ? "PROJECTS"
               : view === 4
               ? "TIME LINE"
-              : ""
+              : "N/A"
           }
           assets={[InfoImg, ContactImg, GitHubImg, BlogImg, YoutubeImg]}
         />
         <HomeNav />
-        <div style={{ width: "100%", position: "absolute", top: 0, zIndex: 1 }}>
-          <div ref={refInfo}>
+        <div
+          style={{
+            width: "100%",
+            position: "absolute",
+            top: 0,
+            zIndex: 1,
+          }}
+        >
+          <div ref={refInfo} style={{ scrollSnapAlign: "start" }}>
             <MyInfo />
           </div>
-          <div ref={refMInfo}>
+          <div ref={refMInfo} style={{ scrollSnapAlign: "start" }}>
             <MyMoreInfo />
           </div>
-          <div ref={refProj}>
+          <div ref={refProj} style={{ scrollSnapAlign: "start" }}>
             <Projects />
           </div>
-          <div ref={refTL}>
+          <div ref={refTL} style={{ scrollSnapAlign: "start" }}>
             <TimeLine />
           </div>
         </div>
-      </Wrapper>
-    </>
+      </ContentWrapper>
+    </Wrapper>
   );
 }
 

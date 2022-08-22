@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   padding-top: 100px;
   background-color: #22222255;
   color: white;
+  scroll-snap-align: start;
 `;
 
 function TimeLine() {

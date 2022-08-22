@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   background-color: #22222255;
   color: white;
   position: relative;
+  scroll-snap-align: start;
 `;
 const ParticleWrapper = styled.div<{ isSelected: number }>`
   width: 100%;

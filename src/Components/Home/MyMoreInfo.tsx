@@ -18,6 +18,7 @@ const Wrapper = styled.div`
     width: 0;
     background: transparent;
   }
+  scroll-snap-align: start;
 `;
 const ContentsWrapper = styled.div`
   width: 50%;
