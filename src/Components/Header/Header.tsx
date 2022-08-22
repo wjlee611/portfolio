@@ -94,6 +94,12 @@ const SiteInfoWrapper = styled(DialogWrapper)`
     text-decoration: none;
     color: #88eeff;
   }
+  & > span:nth-last-child(1),
+  & > span:nth-last-child(2),
+  & > span:nth-last-child(3) {
+    margin-left: 10px;
+    color: #88eeff;
+  }
 `;
 const LinkWrapper = styled(DialogWrapper)`
   width: 70px;
@@ -175,9 +181,10 @@ function Header({ title, assets }: IHeader) {
             >
               <span>&gt; View source code @GitHub </span>
             </a>
-            <span>Title paricle source: Mamboleoo</span>
-            <span>Font: Baloo Thambi 2 @Google Fonts</span>
-            <span>B.G. image: Hypergryph - Arknights</span>
+            <span>Other Sources from</span>
+            <span>&gt; Title paricle: Mamboleoo</span>
+            <span>&gt; Font : Baloo Thambi 2, Jua</span>
+            <span>&gt; B.G. image: Hypergryph</span>
           </SiteInfoWrapper>
         ) : selected === 2 ? (
           <LinkWrapper

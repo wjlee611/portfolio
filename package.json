@@ -20,6 +20,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.4",
+    "react-sticky-el": "^2.0.9",
     "react-transition-group": "^4.4.5",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.5",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-sticky-el": "^1.0.3",
     "@types/styled-components": "^5.1.26"
   },
   "homepage": "https://wjlee611.github.io/portfolio"
