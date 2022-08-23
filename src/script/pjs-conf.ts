@@ -1,19 +1,15 @@
 export const conf: any = {
   particles: {
     number: {
-      value: 20,
+      value: 15,
     },
     color: {
-      value: "#ffffff",
+      value: "#888",
     },
     shape: {
       type: "character",
       character: {
         value: [
-          "W",
-          "O",
-          "N",
-          "G",
           "ISFJ-T",
           "Scrupulous",
           "Enthusiastic",
@@ -30,10 +26,6 @@ export const conf: any = {
         weight: "400",
       },
     },
-    opacity: {
-      value: 0.7,
-      random: false,
-    },
     size: {
       value: 10,
       random: false,
@@ -41,8 +33,7 @@ export const conf: any = {
     line_linked: {
       enable: true,
       distance: 200,
-      color: "#ffffff",
-      opacity: 0.4,
+      color: "#888",
       width: 1,
     },
     move: {
@@ -62,26 +53,14 @@ export const conf: any = {
         enable: true,
         mode: "grab",
       },
-      onclick: {
-        enable: true,
-        mode: "repulse",
-      },
-      resize: true,
     },
     modes: {
       grab: {
-        distance: 200,
-        line_linked: {
-          opacity: 1,
-        },
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
+        distance: 300,
       },
     },
   },
-  retina_detect: true,
+  // retina_detect: true,
   style: {
     width: "100vw",
     height: "100vh",

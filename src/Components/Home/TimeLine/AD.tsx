@@ -15,14 +15,14 @@ const Wrapper = styled.div`
   & > a {
     display: flex;
     width: 400px;
-    border-radius: 15px;
+    border-radius: 30px;
     border-top-left-radius: 0;
     border: 2px solid #22bbff88;
   }
 `;
 const Img = styled.img`
   width: 400px;
-  border-radius: 15px;
+  border-radius: 30px;
   border-top-left-radius: 0;
 `;
 

@@ -41,6 +41,7 @@ const BG = styled.img`
   position: fixed;
   top: 0;
   z-index: 1;
+  filter: brightness(70%);
 `;
 const ImgAsset = styled.div`
   position: fixed;

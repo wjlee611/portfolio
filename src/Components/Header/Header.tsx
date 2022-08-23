@@ -182,9 +182,9 @@ function Header({ title, assets }: IHeader) {
               <span>&gt; View source code @GitHub </span>
             </a>
             <span>Other Sources from</span>
-            <span>&gt; Title paricle: Mamboleoo</span>
-            <span>&gt; Font : Baloo Thambi 2, Jua</span>
-            <span>&gt; B.G. image: Hypergryph</span>
+            <span>- Title paricle: Mamboleoo</span>
+            <span>- Font : Baloo Thambi 2, Jua</span>
+            <span>- B.G. image: Hypergryph</span>
           </SiteInfoWrapper>
         ) : selected === 2 ? (
           <LinkWrapper

@@ -16,7 +16,7 @@ const Img = styled.img`
   width: 400px;
   height: 300px;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 30px;
   border-top-left-radius: 0;
 `;
 

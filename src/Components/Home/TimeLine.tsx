@@ -8,6 +8,8 @@ import AC from "./TimeLine/AC";
 import AD from "./TimeLine/AD";
 import AE from "./TimeLine/AE";
 import AF from "./TimeLine/AF";
+import { useScroll, useSpring, motion } from "framer-motion";
+import { useRef } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,8 +19,9 @@ const Wrapper = styled.div`
   scroll-snap-align: start;
 `;
 const ScrollArea = styled.div<{ inView: boolean }>`
-  width: 800px;
+  width: 100%;
   height: 100vh;
+  padding: 0 calc(50% - 400px);
   padding-top: 100px;
   display: flex;
   flex-direction: column;
@@ -85,12 +88,12 @@ const HeaderT = styled(Header)`
   justify-content: flex-end;
   padding-right: 10px;
   font-size: 16px;
-  padding-bottom: 1px;
+  padding-top: 1px;
 `;
 const HeaderH = styled(Header)`
   padding-left: 10px;
   padding-right: 100px;
-  padding-top: 2px;
+  padding-top: 4px;
   font-size: 24px;
 `;
 
@@ -119,6 +122,18 @@ const LineC = styled.div`
   border-top-right-radius: 2px;
 `;
 
+const ScrollProgress = styled(motion.div)<{ inView: boolean }>`
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #22bbff44;
+  transform-origin: 0%;
+  opacity: ${(props) => (props.inView ? 1 : 0)};
+  transition: opacity 0.2s ease-out;
+`;
+
 const timelineData = [
   ["2000.06", "탄생!"], // AA
   ["2014.07", "코딩 동아리 창설"], // AB
@@ -130,6 +145,13 @@ const timelineData = [
 
 function TimeLine() {
   const view = useRecoilValue(homeNavState);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ container: ref });
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 30,
+    restDelta: 0.005,
+  });
 
   const today = new Date();
   const year = today.getFullYear();
@@ -138,7 +160,8 @@ function TimeLine() {
 
   return (
     <Wrapper id="timeline">
-      <ScrollArea className="scroll-area" inView={view === 4}>
+      <ScrollProgress style={{ scaleX }} inView={view === 4} />
+      <ScrollArea className="scroll-area" inView={view === 4} ref={ref}>
         {timelineData.map((arr, i) => (
           <Block key={i} className="block">
             <Sticky
@@ -197,7 +220,11 @@ function TimeLine() {
                 )}.${day}`}</HeaderT>
               </Time>
               <LineWrapper>
-                <LineH />
+                <LineH
+                  style={{
+                    background: "linear-gradient(#22bbff 70%, gold 90%)",
+                  }}
+                />
                 <Circle style={{ backgroundColor: "gold" }} />
               </LineWrapper>
               <ContentH>
@@ -211,7 +238,7 @@ function TimeLine() {
               <LineC style={{ backgroundColor: "gold" }} />
             </LineWrapper>
             <ContentC>
-              <span>어제보다 더 나은 내가 되었기를</span>
+              <span>방문해 주셔서 감사합니다!</span>
             </ContentC>
           </ContentsWrapper>
         </Block>
