@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   height: 100vh;
   padding-top: calc(25vh);
   padding-right: 300px;
-  background-color: #22222255;
   display: flex;
   align-items: flex-start;
   overflow: scroll;

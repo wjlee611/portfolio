@@ -4,10 +4,10 @@ import Sticky from "react-sticky-el";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #22222255;
   display: flex;
   justify-content: center;
   scroll-snap-align: start;
+  margin-top: 130px;
 `;
 const ScrollArea = styled.div`
   width: 800px;
@@ -24,7 +24,6 @@ const ScrollArea = styled.div`
 `;
 const Block = styled.div`
   width: 100%;
-  height: 430px;
   min-height: 430px;
 `;
 const HeaderWrapper = styled.div`
@@ -35,7 +34,6 @@ const HeaderWrapper = styled.div`
 `;
 const ContentsWrapper = styled.div`
   width: 100%;
-  height: 300px;
   min-height: 300px;
   color: white;
   display: flex;
@@ -48,7 +46,7 @@ const Time = styled.div`
 `;
 const LineWrapper = styled.div`
   width: 15px;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -126,7 +124,7 @@ function TimeLine() {
             <Sticky
               scrollElement=".scroll-area"
               boundaryElement=".block"
-              positionRecheckInterval={1}
+              // positionRecheckInterval={1}
               topOffset={-1}
             >
               <HeaderWrapper>
@@ -148,47 +146,6 @@ function TimeLine() {
                 <LineC />
               </LineWrapper>
               <ContentC>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
                 <span>asd</span>
                 <span>asd</span>
                 <span>asd</span>
