@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   & > a {
     display: flex;
     width: 400px;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    border: 2px solid #22bbff88;
   }
 `;
 const Img = styled.img`
@@ -46,9 +49,14 @@ export default function AD() {
       <span>사용자와 소통해보며 응원과 의견을 받아볼 수 있었으며,</span>
       <span>무엇보다, 재미있었습니다.</span>
       <br />
-      <a href="https://www.youtube.com/watch?v=0Egiz8B4eIs" target="_blank">
+      <a
+        href="https://www.youtube.com/watch?v=0Egiz8B4eIs"
+        target="_blank"
+        rel="noreferrer"
+      >
         <Img src={myacnh_yt} alt="myacnh_yt" />
       </a>
+      <br />
       <span>위 사진을 누르시면 개발당시 녹화했던 영상을 보실 수 있습니다.</span>
     </Wrapper>
   );
