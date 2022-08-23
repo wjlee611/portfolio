@@ -5,6 +5,9 @@ import { homeNavState } from "../../atoms";
 import AA from "./TimeLine/AA";
 import AB from "./TimeLine/AB";
 import AC from "./TimeLine/AC";
+import AD from "./TimeLine/AD";
+import AE from "./TimeLine/AE";
+import AF from "./TimeLine/AF";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -117,12 +120,12 @@ const LineC = styled.div`
 `;
 
 const timelineData = [
-  ["2000.06", "탄생!"],
-  ["2014.07", "코딩 동아리 창설"],
-  ["2019.03", "부흥고등학교 졸업"],
-  ["2020.03", "첫 프로젝트 - '나의 모동숲'"],
-  ["2022.06", "판타스틱5 - '말하는 사이에 주문 완료!'"],
-  ["2022.06", "매드맥스 - '혼밥시그널'"],
+  ["2000.06", "탄생!"], // AA
+  ["2014.07", "코딩 동아리 창설"], // AB
+  ["2019.03", "부흥고등학교 졸업"], // AC
+  ["2020.03", "첫 프로젝트 - '나의 모동숲'"], // AD
+  ["2022.06", "판타스틱5 - '말하는 사이에 주문 완료!'"], // AE
+  ["2022.06", "매드맥스 - '혼밥시그널'"], // AF
 ];
 
 function TimeLine() {
@@ -163,7 +166,19 @@ function TimeLine() {
                 <LineC />
               </LineWrapper>
               <ContentC>
-                {i === 0 ? <AA /> : i === 1 ? <AB /> : i === 2 ? <AC /> : null}
+                {i === 0 ? (
+                  <AA />
+                ) : i === 1 ? (
+                  <AB />
+                ) : i === 2 ? (
+                  <AC />
+                ) : i === 3 ? (
+                  <AD />
+                ) : i === 4 ? (
+                  <AE />
+                ) : i === 5 ? (
+                  <AF />
+                ) : null}
               </ContentC>
             </ContentsWrapper>
           </Block>
@@ -183,7 +198,7 @@ function TimeLine() {
               </Time>
               <LineWrapper>
                 <LineH />
-                <Circle />
+                <Circle style={{ backgroundColor: "gold" }} />
               </LineWrapper>
               <ContentH>
                 <HeaderH>...그리고 오늘</HeaderH>
@@ -193,7 +208,7 @@ function TimeLine() {
           <ContentsWrapper>
             <Time />
             <LineWrapper>
-              <LineC />
+              <LineC style={{ backgroundColor: "gold" }} />
             </LineWrapper>
             <ContentC>
               <span>어제보다 더 나은 내가 되었기를</span>
