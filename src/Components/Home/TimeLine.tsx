@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Sticky from "react-sticky-el";
 import { useRecoilValue } from "recoil";
 import { homeNavState } from "../../atoms";
-import { useEffect, useRef } from "react";
+import AA from "./TimeLine/AA";
+import AB from "./TimeLine/AB";
+import AC from "./TimeLine/AC";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -10,7 +12,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   scroll-snap-align: start;
-  /* margin-top: 130px; */
 `;
 const ScrollArea = styled.div<{ inView: boolean }>`
   width: 800px;
@@ -25,11 +26,10 @@ const ScrollArea = styled.div<{ inView: boolean }>`
     background: transparent;
   }
   opacity: ${(props) => (props.inView ? 1 : 0)};
-  transition: opacity 0.1s ease-out;
+  transition: opacity 0.2s ease-out;
 `;
 const Block = styled.div`
   width: 100%;
-  min-height: 430px;
 `;
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -39,7 +39,7 @@ const HeaderWrapper = styled.div`
 `;
 const ContentsWrapper = styled.div`
   width: 100%;
-  min-height: 300px;
+  min-height: 200px;
   color: white;
   display: flex;
 `;
@@ -67,13 +67,16 @@ const ContentH = styled(Content)`
 `;
 const ContentC = styled(Content)`
   flex-direction: column;
-  padding-left: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
 `;
 const Header = styled.div`
   width: 100%;
   height: 30px;
   display: flex;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
 `;
 const HeaderT = styled(Header)`
   justify-content: flex-end;
@@ -83,14 +86,14 @@ const HeaderT = styled(Header)`
 `;
 const HeaderH = styled(Header)`
   padding-left: 10px;
-  font-size: 24px;
+  padding-right: 100px;
   padding-top: 2px;
-  backdrop-filter: blur(5px);
+  font-size: 24px;
 `;
 
 const Circle = styled.div`
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background-color: #22bbff;
   margin: 10px 0;
@@ -104,11 +107,13 @@ const LineH = styled.div`
   border-bottom-right-radius: 1px;
 `;
 const LineC = styled.div`
-  width: 2px;
+  width: 4px;
   height: 100%;
   background-color: #22bbff;
-  border-top-left-radius: 1px;
-  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
 `;
 
 const timelineData = [
@@ -116,8 +121,8 @@ const timelineData = [
   ["2014.07", "코딩 동아리 창설"],
   ["2019.03", "부흥고등학교 졸업"],
   ["2020.03", "첫 프로젝트 - '나의 모동숲'"],
-  ["2022.06", "판타스틱5 - 말하는 사이에 주문 완료!"],
-  ["2022.06", "매드맥스 - 혼밥시그널"],
+  ["2022.06", "판타스틱5 - '말하는 사이에 주문 완료!'"],
+  ["2022.06", "매드맥스 - '혼밥시그널'"],
 ];
 
 function TimeLine() {
@@ -158,9 +163,7 @@ function TimeLine() {
                 <LineC />
               </LineWrapper>
               <ContentC>
-                <span>asd</span>
-                <span>asd</span>
-                <span>asd</span>
+                {i === 0 ? <AA /> : i === 1 ? <AB /> : i === 2 ? <AC /> : null}
               </ContentC>
             </ContentsWrapper>
           </Block>

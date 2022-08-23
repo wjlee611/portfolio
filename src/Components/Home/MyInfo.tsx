@@ -7,14 +7,16 @@ import { conf } from "../../script/pjs-conf";
 import { useRecoilValue } from "recoil";
 import { homeNavState } from "../../atoms";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ inView: boolean }>`
   width: 100%;
   height: 100vh;
   color: white;
   position: relative;
   scroll-snap-align: start;
+  opacity: ${(props) => (props.inView ? 1 : 0)};
+  transition: opacity 0.2s ease-out;
 `;
-const ParticleWrapper = styled.div<{ isSelected: number }>`
+const ParticleWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -60,8 +62,8 @@ function MyInfo() {
     await loadFull(engine);
   }, []);
   return (
-    <Wrapper>
-      <ParticleWrapper isSelected={view}>
+    <Wrapper inView={view === 1}>
+      <ParticleWrapper>
         <Particles init={particlesInit} options={{ ...conf }} />
       </ParticleWrapper>
       <ContentWrapper>
