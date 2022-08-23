@@ -15,8 +15,8 @@ const Wrapper = styled.div`
 export default function AA() {
   return (
     <Wrapper>
-      <span>2000.06.11, 천둥번개가 몰아치는 새벽 4시</span>
-      <span>'이'씨 집안에 3.9kg의 아기가 태어났습니다!</span>
+      <span>2000.06.11, 천둥번개가 몰아치는 새벽 3:45시</span>
+      <span>'이'씨 집안에 3.92kg의 우량아가 태어났습니다!</span>
       <br />
       <span>
         외 할아버지가 수컷 '雄(웅)', 실을 '載(재)'로 이름을 지어주셨습니다.

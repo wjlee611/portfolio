@@ -33,7 +33,7 @@ const EmailInputWrapper = styled.div`
     height: 30px;
     background-color: transparent;
     color: white;
-    font-family: "Baloo Thambi 2", "Jua", cursive;
+    font-family: "Baloo Thambi 2", "Nanum Gothic Coding", Verdana;
     font-size: 16px;
     font-weight: 700;
     border: none;
@@ -74,7 +74,7 @@ const MessageInputWrapper = styled.div`
     height: 100%;
     background-color: transparent;
     color: white;
-    font-family: "Baloo Thambi 2", "Jua", cursive;
+    font-family: "Baloo Thambi 2", "Nanum Gothic Coding", Verdana;
     font-size: 16px;
     font-weight: 700;
     border: none;
@@ -128,7 +128,7 @@ const SubmitBtn = styled.input<{
         : "#22bbff"};
   border-radius: 5px;
   padding: 5px 20px;
-  font-family: "Baloo Thambi 2", "Jua", cursive;
+  font-family: "Baloo Thambi 2", "Nanum Gothic Coding", Verdana;
   transition: background-color 0.3s ease-out, border 0.3s ease-out;
 `;
 

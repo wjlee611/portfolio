@@ -45,7 +45,7 @@ const HeaderWrapper = styled.div`
 `;
 const ContentsWrapper = styled.div`
   width: 100%;
-  min-height: 200px;
+  min-height: 150px;
   color: white;
   display: flex;
 `;
@@ -73,7 +73,7 @@ const ContentH = styled(Content)`
 `;
 const ContentC = styled(Content)`
   flex-direction: column;
-  padding-top: 10px;
+  padding-top: 30px;
   padding-left: 20px;
 `;
 const Header = styled.div`
@@ -89,12 +89,15 @@ const HeaderT = styled(Header)`
   padding-right: 10px;
   font-size: 16px;
   padding-top: 1px;
+  border-right: 1px solid #22bbff;
 `;
 const HeaderH = styled(Header)`
-  padding-left: 10px;
+  padding-left: 20px;
   padding-right: 100px;
   padding-top: 4px;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  border-left: 1px solid #22bbff;
 `;
 
 const Circle = styled.div`
@@ -123,7 +126,7 @@ const LineC = styled.div`
 `;
 
 const ScrollProgress = styled(motion.div)<{ inView: boolean }>`
-  height: 100px;
+  height: 95px;
   position: fixed;
   top: 0;
   left: 0;
@@ -132,6 +135,13 @@ const ScrollProgress = styled(motion.div)<{ inView: boolean }>`
   transform-origin: 0%;
   opacity: ${(props) => (props.inView ? 1 : 0)};
   transition: opacity 0.2s ease-out;
+`;
+
+const Reference = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #888;
 `;
 
 const timelineData = [
@@ -162,6 +172,9 @@ function TimeLine() {
     <Wrapper id="timeline">
       <ScrollProgress style={{ scaleX }} inView={view === 4} />
       <ScrollArea className="scroll-area" inView={view === 4} ref={ref}>
+        <Reference>
+          ☑︎ 앞 3개의 타임라인은 서론의 성격이 강합니다. 참고 부탁드립니다.
+        </Reference>
         {timelineData.map((arr, i) => (
           <Block key={i} className="block">
             <Sticky
@@ -215,9 +228,11 @@ function TimeLine() {
           >
             <HeaderWrapper>
               <Time>
-                <HeaderT>{`${year}.${("00" + month).slice(
-                  -2
-                )}.${day}`}</HeaderT>
+                <HeaderT
+                  style={{
+                    borderRight: "1px solid gold",
+                  }}
+                >{`${year}.${("00" + month).slice(-2)}.${day}`}</HeaderT>
               </Time>
               <LineWrapper>
                 <LineH
@@ -228,7 +243,13 @@ function TimeLine() {
                 <Circle style={{ backgroundColor: "gold" }} />
               </LineWrapper>
               <ContentH>
-                <HeaderH>...그리고 오늘</HeaderH>
+                <HeaderH
+                  style={{
+                    borderLeft: "1px solid gold",
+                  }}
+                >
+                  ...그리고 오늘
+                </HeaderH>
               </ContentH>
             </HeaderWrapper>
           </Sticky>

@@ -48,6 +48,8 @@ const Hello = styled.div`
 const ProfileImg = styled.img`
   width: 300px;
   height: 300px;
+  object-fit: cover;
+  border-bottom: 2px solid #22bbff;
   border-radius: 150px;
   margin-bottom: 20px;
 `;
@@ -67,7 +69,7 @@ const InfoNavBtnWrapper = styled.div`
     border: none;
     padding: 0 20px;
     color: white;
-    font-family: "Baloo Thambi 2", "Jua", cursive;
+    font-family: "Baloo Thambi 2", "Nanum Gothic Coding", Verdana;
     font-size: 16px;
   }
   & > div {

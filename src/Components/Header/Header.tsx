@@ -96,9 +96,13 @@ const SiteInfoWrapper = styled(DialogWrapper)`
   }
   & > span:nth-last-child(1),
   & > span:nth-last-child(2),
-  & > span:nth-last-child(3) {
+  & > span:nth-last-child(3),
+  & > span:nth-last-child(4) {
     margin-left: 10px;
     color: #88eeff;
+  }
+  & > span:nth-last-child(2) {
+    margin-left: 60px;
   }
 `;
 const LinkWrapper = styled(DialogWrapper)`
@@ -183,7 +187,8 @@ function Header({ title, assets }: IHeader) {
             </a>
             <span>Other Sources from</span>
             <span>- Title paricle: Mamboleoo</span>
-            <span>- Font : Baloo Thambi 2, Jua</span>
+            <span>- Font : Baloo Thambi 2, </span>
+            <span>Nanum Gothic Coding</span>
             <span>- B.G. image: Hypergryph</span>
           </SiteInfoWrapper>
         ) : selected === 2 ? (

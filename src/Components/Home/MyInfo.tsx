@@ -50,9 +50,15 @@ const ContentWrapper = styled.div`
     font-size: 128px;
     font-weight: 700;
     margin-right: 20px;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    background-color: #22bbff66;
+    backdrop-filter: blur(5px);
   }
   & > div > span:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 `;
 

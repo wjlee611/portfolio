@@ -26,7 +26,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: 'Baloo Thambi 2', 'Jua', cursive;
+	font-family: 'Baloo Thambi 2', 'Nanum Gothic Coding', Verdana;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
