@@ -59,10 +59,12 @@ function Home() {
   const refTL = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
-    if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
-    if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
-    if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
+    }, 1);
   }, [view]);
 
   return (

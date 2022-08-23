@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Sticky from "react-sticky-el";
+import { useRecoilValue } from "recoil";
+import { homeNavState } from "../../atoms";
+import { useEffect, useRef } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -7,9 +10,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   scroll-snap-align: start;
-  margin-top: 130px;
+  /* margin-top: 130px; */
 `;
-const ScrollArea = styled.div`
+const ScrollArea = styled.div<{ inView: boolean }>`
   width: 800px;
   height: 100vh;
   padding-top: 100px;
@@ -21,6 +24,8 @@ const ScrollArea = styled.div`
     width: 0;
     background: transparent;
   }
+  opacity: ${(props) => (props.inView ? 1 : 0)};
+  transition: opacity 0.1s ease-out;
 `;
 const Block = styled.div`
   width: 100%;
@@ -39,7 +44,7 @@ const ContentsWrapper = styled.div`
   display: flex;
 `;
 const Time = styled.div`
-  width: 85px;
+  width: 105px;
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -53,7 +58,7 @@ const LineWrapper = styled.div`
   align-items: center;
 `;
 const Content = styled.div`
-  width: calc(100% - 100px);
+  width: calc(100% - 120px);
   height: 100%;
   display: flex;
 `;
@@ -116,15 +121,22 @@ const timelineData = [
 ];
 
 function TimeLine() {
+  const view = useRecoilValue(homeNavState);
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const day = today.getDate();
+
   return (
     <Wrapper id="timeline">
-      <ScrollArea className="scroll-area">
+      <ScrollArea className="scroll-area" inView={view === 4}>
         {timelineData.map((arr, i) => (
           <Block key={i} className="block">
             <Sticky
               scrollElement=".scroll-area"
               boundaryElement=".block"
-              // positionRecheckInterval={1}
+              positionRecheckInterval={1}
               topOffset={-1}
             >
               <HeaderWrapper>
@@ -153,6 +165,38 @@ function TimeLine() {
             </ContentsWrapper>
           </Block>
         ))}
+        <Block key={"today"} className="block">
+          <Sticky
+            scrollElement=".scroll-area"
+            boundaryElement=".block"
+            positionRecheckInterval={1}
+            topOffset={-1}
+          >
+            <HeaderWrapper>
+              <Time>
+                <HeaderT>{`${year}.${("00" + month).slice(
+                  -2
+                )}.${day}`}</HeaderT>
+              </Time>
+              <LineWrapper>
+                <LineH />
+                <Circle />
+              </LineWrapper>
+              <ContentH>
+                <HeaderH>...그리고 오늘</HeaderH>
+              </ContentH>
+            </HeaderWrapper>
+          </Sticky>
+          <ContentsWrapper>
+            <Time />
+            <LineWrapper>
+              <LineC />
+            </LineWrapper>
+            <ContentC>
+              <span>어제보다 더 나은 내가 되었기를</span>
+            </ContentC>
+          </ContentsWrapper>
+        </Block>
       </ScrollArea>
     </Wrapper>
   );
