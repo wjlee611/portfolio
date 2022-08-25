@@ -8,7 +8,6 @@ const Home = React.lazy(() => import("./Routes/Home"));
 
 function Router() {
   return (
-    // <Wrapper>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route
         render={({ location }) => {
@@ -18,7 +17,6 @@ function Router() {
                 key={location.key}
                 timeout={500}
                 classNames="scale_fade"
-                unmountOnExit
               >
                 <Switch location={location}>
                   <Route exact path="/">
@@ -40,7 +38,6 @@ function Router() {
         }}
       ></Route>
     </BrowserRouter>
-    // </Wrapper>
   );
 }
 

@@ -9,3 +9,8 @@ export const loadedAsset = atom<number>({
   key: "loadedAsset",
   default: 0,
 });
+
+export const backToMain = atom<boolean>({
+  key: "backToMain",
+  default: false,
+});

@@ -1,6 +1,6 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { homeNavState } from "../../atoms";
+import { backToMain, homeNavState } from "../../atoms";
 
 const Wrapper = styled.div`
   width: 150px;
@@ -67,6 +67,7 @@ const BtnBG = styled.div`
 
 function HomeNav() {
   const [current, setCurrent] = useRecoilState(homeNavState);
+  const setBackToMain = useSetRecoilState(backToMain);
   return (
     <Wrapper>
       <Button
@@ -87,7 +88,10 @@ function HomeNav() {
       </Button>
       <Button
         id="nav_3"
-        onClick={() => setCurrent(3)}
+        onClick={() => {
+          setCurrent(3);
+          setBackToMain(false);
+        }}
         isSelected={current === 3}
       >
         <span>Projects</span>

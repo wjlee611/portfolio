@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   justify-content: center;
   scroll-snap-align: start;
 `;
-const ScrollArea = styled.div<{ inView: boolean }>`
+const ScrollArea = styled.div<{ inview: "true" | "false" }>`
   width: 100%;
   height: 100vh;
   padding: 0 calc(50% - 400px);
@@ -31,7 +31,7 @@ const ScrollArea = styled.div<{ inView: boolean }>`
     width: 0;
     background: transparent;
   }
-  opacity: ${(props) => (props.inView ? 1 : 0)};
+  opacity: ${(props) => (props.inview === "true" ? 1 : 0)};
   transition: opacity 0.2s ease-out;
 `;
 const Block = styled.div`
@@ -125,7 +125,7 @@ const LineC = styled.div`
   border-top-right-radius: 2px;
 `;
 
-const ScrollProgress = styled(motion.div)<{ inView: boolean }>`
+const ScrollProgress = styled(motion.div)<{ inview: "true" | "false" }>`
   height: 95px;
   position: fixed;
   top: 0;
@@ -133,7 +133,7 @@ const ScrollProgress = styled(motion.div)<{ inView: boolean }>`
   right: 0;
   background: #22bbff44;
   transform-origin: 0%;
-  opacity: ${(props) => (props.inView ? 1 : 0)};
+  opacity: ${(props) => (props.inview === "true" ? 1 : 0)};
   transition: opacity 0.2s ease-out;
 `;
 
@@ -170,8 +170,15 @@ function TimeLine() {
 
   return (
     <Wrapper id="timeline">
-      <ScrollProgress style={{ scaleX }} inView={view === 4} />
-      <ScrollArea className="scroll-area" inView={view === 4} ref={ref}>
+      <ScrollProgress
+        style={{ scaleX }}
+        inview={view === 4 ? "true" : "false"}
+      />
+      <ScrollArea
+        className="scroll-area"
+        inview={view === 4 ? "true" : "false"}
+        ref={ref}
+      >
         <Reference>
           ☑︎ 앞 3개의 타임라인은 서론의 성격이 강합니다. 참고 부탁드립니다.
         </Reference>

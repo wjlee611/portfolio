@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { homeNavState, loadedAsset } from "../atoms";
+import { backToMain, homeNavState, loadedAsset } from "../atoms";
 import Header from "../Components/Header/Header";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
@@ -53,7 +53,8 @@ const ImgAsset = styled.div`
 
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
-  const view = useRecoilValue(homeNavState);
+  const [view, setView] = useRecoilState(homeNavState);
+  const [btm, setBtm] = useRecoilState(backToMain);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -64,10 +65,15 @@ function Home() {
     setTimeout(() => {
       if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 3)
+        refProj.current?.scrollIntoView({ behavior: btm ? "auto" : "smooth" });
       if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
     }, 1);
   }, [view]);
+
+  useEffect(() => {
+    if (btm) setView(3);
+  }, [btm]);
 
   return (
     <Wrapper>
