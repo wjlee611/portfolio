@@ -1,4 +1,5 @@
 export const conf: any = {
+  fps_limit: 30,
   particles: {
     number: {
       value: 15,

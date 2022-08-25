@@ -8,10 +8,10 @@ import EmailForm from "./EmailForm";
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  padding-top: calc(25vh);
-  padding-right: 300px;
+  padding-top: 150px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   overflow: scroll;
   &::-webkit-scrollbar {
     width: 0;
@@ -20,15 +20,18 @@ const Wrapper = styled.div`
   scroll-snap-align: start;
 `;
 const ContentsWrapper = styled.div`
-  width: 50%;
   height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 50px;
   color: white;
   position: relative;
   &:first-child {
     padding: 0 20px;
+  }
+  &:last-child {
+    width: 600px;
   }
 `;
 const Hello = styled.div`
@@ -80,8 +83,7 @@ const InfoNavBtnWrapper = styled.div`
 `;
 const InfoWrapper = styled(motion.div)`
   width: 100%;
-  height: 100%;
-  min-height: 450px;
+  height: 600px;
   padding-left: 10px;
   padding-top: 20px;
   position: absolute;
