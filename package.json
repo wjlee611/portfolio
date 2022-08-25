@@ -59,6 +59,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
     "@types/react-sticky-el": "^1.0.3",
+    "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26"
   },
   "homepage": "https://wjlee611.github.io/portfolio"

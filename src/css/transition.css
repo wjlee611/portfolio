@@ -1,0 +1,33 @@
+body {
+  overflow: hidden;
+}
+
+.transition-group {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.scale_fade-enter {
+  opacity: 0;
+  transform: scale(150%);
+}
+
+.scale_fade-enter-active {
+  opacity: 1;
+  transform: scale(100%);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.scale_fade-exit {
+  opacity: 1;
+  transform: scale(100%);
+}
+
+.scale_fade-exit-active {
+  opacity: 0;
+  transform: scale(150%);
+  transition: transform 0.5s cubic-bezier(0.3, 0.9, 0.3, 0.9),
+    opacity 0.5s ease-in-out;
+}
