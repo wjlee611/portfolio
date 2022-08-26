@@ -52,7 +52,7 @@ const ImgAsset = styled.div`
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
-  const setInProject = useSetRecoilState(inProject);
+  const [isInProject, setInProject] = useRecoilState(inProject);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -60,7 +60,10 @@ function Home() {
   const refTL = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    window.history.replaceState(null, "projects", "/portfolio/#home");
+    if (isInProject) {
+      window.history.replaceState(null, "projects", "/portfolio/#projects");
+      setView(3);
+    } else window.history.replaceState(null, "projects", "/portfolio/#home");
     setInProject(false);
   }, []);
 
@@ -70,6 +73,7 @@ function Home() {
       if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
+      window.dispatchEvent(new Event("title-change"));
     }, 1);
   }, [view]);
 

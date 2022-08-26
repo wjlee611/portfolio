@@ -74,7 +74,6 @@ function HomeNav() {
         onClick={() => {
           setCurrent(1);
           window.history.replaceState(null, "home", "/portfolio/#home");
-          window.dispatchEvent(new Event("title-change"));
         }}
         isSelected={current === 1}
       >
@@ -90,7 +89,6 @@ function HomeNav() {
             "information",
             "/portfolio/#information"
           );
-          window.dispatchEvent(new Event("title-change"));
         }}
         isSelected={current === 2}
       >
@@ -102,7 +100,6 @@ function HomeNav() {
         onClick={() => {
           setCurrent(3);
           window.history.replaceState(null, "projects", "/portfolio/#projects");
-          window.dispatchEvent(new Event("title-change"));
         }}
         isSelected={current === 3}
       >
@@ -114,7 +111,6 @@ function HomeNav() {
         onClick={() => {
           setCurrent(4);
           window.history.replaceState(null, "timeline", "/portfolio/#timeline");
-          window.dispatchEvent(new Event("title-change"));
         }}
         isSelected={current === 4}
       >

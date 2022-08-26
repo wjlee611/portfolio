@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   position: fixed;
   top: 0;
+  z-index: 99;
   background-color: #222;
   & > span {
     color: #22bbff;
