@@ -53,7 +53,7 @@ const ImgAsset = styled.div`
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
-  const btm = useRecoilValue(backToMain);
+  const [btm, setBtm] = useRecoilState(backToMain);
   const location = useLocation();
 
   const refInfo = useRef<null | HTMLDivElement>(null);
@@ -63,9 +63,10 @@ function Home() {
 
   useEffect(() => {
     setLoaded(0);
-    if (btm)
+    if (btm) {
       window.history.replaceState(null, "projects", "/portfolio/#projects");
-    else {
+      setBtm(false);
+    } else {
       if (location.hash === "#home") setView(1);
       else if (location.hash === "#information") setView(2);
       else if (location.hash === "#projects") setView(3);
@@ -78,12 +79,14 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (btm) setView(3);
+    if (btm) {
+      setView(3);
+      setBtm(false);
+    }
     setTimeout(() => {
       if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 3)
-        refProj.current?.scrollIntoView({ behavior: btm ? "auto" : "smooth" });
+      if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
     }, 1);
   }, [view, btm]);

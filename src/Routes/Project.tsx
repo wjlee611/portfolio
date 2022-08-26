@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: #222;
   color: white;
+  overflow: hidden;
 `;
 
 interface IRouteParams {
