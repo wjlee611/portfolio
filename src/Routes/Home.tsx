@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { homeNavState, inProject, loadedAsset, onScroll } from "../atoms";
+import { homeNavState, inProject, loadedAsset } from "../atoms";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
 import MyMoreInfo from "../Components/Home/MyMoreInfo";
@@ -54,7 +54,6 @@ function Home() {
   const [view, setView] = useRecoilState(homeNavState);
   const [isInProject, setInProject] = useRecoilState(inProject);
   const [isFirstTime, setIsFirstTime] = useState(true);
-  const [isScroll, setIsScroll] = useRecoilState(onScroll);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -66,69 +65,69 @@ function Home() {
       if (isInProject) {
         window.history.replaceState(null, "projects", "/portfolio/#projects");
         setView(3);
-        setInProject(false);
+      } else {
+        if (
+          window.location.hash !== "#information" &&
+          window.location.hash !== "#projects" &&
+          window.location.hash !== "#timeline"
+        ) {
+          window.history.replaceState(null, "projects", "/portfolio/#home");
+          setView(1);
+        }
       }
       setIsFirstTime(false);
+      setInProject(false);
     }
 
     if (window.location.hash === "#home") {
       setView(1);
-      if (!isScroll) {
-        setIsScroll(true);
-        setTimeout(() => {
-          refInfo.current?.scrollIntoView({
-            behavior: "smooth",
-            inline: "start",
-            block: "start",
-          });
-          setIsScroll(false);
-        }, 10);
-      }
+      setTimeout(() => {
+        refInfo.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
     }
     if (window.location.hash === "#information") {
       setView(2);
-      if (!isScroll) {
-        setIsScroll(true);
-        setTimeout(() => {
-          refMInfo.current?.scrollIntoView({
-            behavior: "smooth",
-            inline: "start",
-            block: "start",
-          });
-          setIsScroll(false);
-        }, 10);
-      }
+      setTimeout(() => {
+        refMInfo.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
     }
     if (window.location.hash === "#projects") {
       setView(3);
-      if (!isScroll) {
-        setIsScroll(true);
-        setTimeout(() => {
-          refProj.current?.scrollIntoView({
-            behavior: "smooth",
-            inline: "start",
-            block: "start",
-          });
-          setIsScroll(false);
-        }, 10);
-      }
+      setTimeout(() => {
+        refProj.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
     }
     if (window.location.hash === "#timeline") {
       setView(4);
-      if (!isScroll) {
-        setIsScroll(true);
-        setTimeout(() => {
-          refTL.current?.scrollIntoView({
-            behavior: "smooth",
-            inline: "start",
-            block: "start",
-          });
-          setIsScroll(false);
-        }, 10);
-      }
+      setTimeout(() => {
+        refTL.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
     }
     window.dispatchEvent(new Event("title-change"));
-  }, [window.location.hash, view]);
+  }, [
+    window.location.hash,
+    view,
+    isFirstTime,
+    isInProject,
+    setView,
+    setInProject,
+  ]);
 
   return (
     <Wrapper>

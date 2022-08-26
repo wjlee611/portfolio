@@ -28,7 +28,10 @@ function Project() {
 
   useEffect(() => {
     setInProject(true);
-  }, []);
+    return () => {
+      setInProject(false);
+    };
+  }, [setInProject]);
 
   return (
     <Wrapper>
