@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Woong's Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![스크린샷 2022-08-26 23 16 05](https://user-images.githubusercontent.com/66172061/186924124-00ccd971-f00e-4e0e-8f98-a6620f951f05.png)
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+## /
+### [/#home](https://wjlee611.github.io/portfolio/#home)
+The main page. (above screenshot)\
+Keywords about me appear randomly and move around.
 
-### `npm start`
+### [/#information](https://wjlee611.github.io/portfolio/#information)
+The information page.\
+Here is my photo and a brief self-introduction.\
+And also include email forms, contact methods, and my skills are listed.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### [/#projects](https://wjlee611.github.io/portfolio/#projects)
+The Projects page.\
+Among the projects I have worked on so far, important projects are listed.\
+Click the project icon to go to the detailed page for the project.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### [/#timeline](https://wjlee611.github.io/portfolio/#timeline)
+The Time Line page.\
+My life as a developer is presented in timeline format.
 
-### `npm test`
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## /:project
+### [/talk-kiosk](https://wjlee611.github.io/portfolio/talk-kiosk)
+More information here!\
+<a href="https://github.com/Fantastic5-Team/talk-kiosk-client" target="_blank">
+  <img src="https://img.shields.io/badge/GitHub-talk--kiosk--client-brightgreen?style=for-the-badge&logo=github" />
+</a>\
+<a href="https://github.com/Fantastic5-Team/talk-kiosk-server" target="_blank">
+  <img src="https://img.shields.io/badge/GitHub-talk--kiosk--server-brightgreen?style=for-the-badge&logo=github" />
+</a>\
+<a href="https://github.com/Fantastic5-Team/talk-kiosk-flask_server" target="_blank">
+  <img src="https://img.shields.io/badge/GitHub-talk--kiosk--flask_server-brightgreen?style=for-the-badge&logo=github" />
+</a>
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### [/honbab-signal](https://wjlee611.github.io/portfolio/honbab-signal)
+More information here!\
+<a href="https://github.com/MadMax-Team/honbap_signal_server" target="_blank">
+  <img src="https://img.shields.io/badge/GitHub-honbap--signal--server-brightgreen?style=for-the-badge&logo=github" />
+</a>
