@@ -62,16 +62,6 @@ function Home() {
   const refTL = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 3)
-        refProj.current?.scrollIntoView({ behavior: btm ? "auto" : "smooth" });
-      if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
-    }, 1);
-  }, [view]);
-
-  useEffect(() => {
     setLoaded(0);
     if (btm)
       window.history.replaceState(null, "projects", "/portfolio/#projects");
@@ -89,7 +79,14 @@ function Home() {
 
   useEffect(() => {
     if (btm) setView(3);
-  }, [btm]);
+    setTimeout(() => {
+      if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
+      if (view === 3)
+        refProj.current?.scrollIntoView({ behavior: btm ? "auto" : "smooth" });
+      if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
+    }, 1);
+  }, [view, btm]);
 
   return (
     <Wrapper>
