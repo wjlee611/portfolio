@@ -25,7 +25,7 @@ function Projects() {
         말하는 사이에 주문 완료!
       </Link>
       <Link
-        to={{ pathname: "/honbab-signal" }}
+        to={{ pathname: "/honbap-signal" }}
         style={{ textDecoration: "none", color: "white" }}
       >
         혼밥 시그널

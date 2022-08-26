@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { homeNavState, inProject } from "../atoms";
-import HonbabSignal from "../Components/Project/HonbabSignal";
+import HonbapSignal from "../Components/Project/HonbapSignal";
 import TalkKiosk from "../Components/Project/TalkKiosk";
 
 const Wrapper = styled.div`
@@ -44,8 +44,8 @@ function Project() {
       </Link>
       {project === "talk-kiosk" ? (
         <TalkKiosk />
-      ) : project === "honbab-signal" ? (
-        <HonbabSignal />
+      ) : project === "honbap-signal" ? (
+        <HonbapSignal />
       ) : (
         <h1>Error: 404 - page not found!</h1>
       )}
