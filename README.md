@@ -38,7 +38,7 @@ More information here!\
   <img src="https://img.shields.io/badge/GitHub-talk--kiosk--flask_server-brightgreen?style=for-the-badge&logo=github" />
 </a>
 
-### [/honbab-signal](https://wjlee611.github.io/portfolio/honbab-signal)
+### [/honbap-signal](https://wjlee611.github.io/portfolio/honbap-signal)
 More information here!\
 <a href="https://github.com/MadMax-Team/honbap_signal_server" target="_blank">
   <img src="https://img.shields.io/badge/GitHub-honbap--signal--server-brightgreen?style=for-the-badge&logo=github" />
