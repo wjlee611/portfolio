@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { backToMain, homeNavState } from "../atoms";
+import { backToMain, homeNavState, inProject } from "../atoms";
 import HonbabSignal from "../Components/Project/HonbabSignal";
 import TalkKiosk from "../Components/Project/TalkKiosk";
 
@@ -24,10 +24,10 @@ interface IRouteParams {
 function Project() {
   const { project } = useParams<IRouteParams>();
   const setBackToMain = useSetRecoilState(backToMain);
-  const setView = useSetRecoilState(homeNavState);
+  const setInProject = useSetRecoilState(inProject);
 
   useEffect(() => {
-    setView(5);
+    setInProject(true);
   }, []);
 
   return (

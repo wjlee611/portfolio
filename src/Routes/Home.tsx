@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { backToMain, homeNavState, loadedAsset } from "../atoms";
+import { backToMain, homeNavState, inProject, loadedAsset } from "../atoms";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
 import MyMoreInfo from "../Components/Home/MyMoreInfo";
@@ -54,7 +54,7 @@ function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
   const [btm, setBtm] = useRecoilState(backToMain);
-  const location = useLocation();
+  const setInProject = useSetRecoilState(inProject);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -62,34 +62,24 @@ function Home() {
   const refTL = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    setLoaded(0);
     if (btm) {
       window.history.replaceState(null, "projects", "/portfolio/#projects");
+      setView(3);
       setBtm(false);
     } else {
-      if (location.hash === "#home") setView(1);
-      else if (location.hash === "#information") setView(2);
-      else if (location.hash === "#projects") setView(3);
-      else if (location.hash === "#timeline") setView(4);
-      else {
-        window.history.replaceState(null, "projects", "/portfolio/#home");
-        setView(1);
-      }
+      window.history.replaceState(null, "projects", "/portfolio/#home");
     }
+    setInProject(false);
   }, []);
 
   useEffect(() => {
-    if (btm) {
-      setView(3);
-      setBtm(false);
-    }
     setTimeout(() => {
       if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
       if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
     }, 1);
-  }, [view, btm]);
+  }, [view]);
 
   return (
     <Wrapper>
