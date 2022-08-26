@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { homeNavState } from "../../atoms";
 import Canvas from "../../script/titleCanvas";
 
 const CanvasWrapper = styled.canvas<{ opa: number }>`
@@ -10,23 +12,20 @@ const CanvasWrapper = styled.canvas<{ opa: number }>`
   z-index: 6;
 `;
 
-interface ITitle {
-  title: string;
-}
-function Title({ title }: ITitle) {
+function Title() {
   const [opa, setOpa] = useState(0);
+  const view = useRecoilValue(homeNavState);
   useEffect(() => {
     Canvas();
   }, []);
   useEffect(() => {
-    document.querySelector<any>("#copy").value = title;
     setTimeout(() => {
       setOpa(1);
     }, 200);
     return () => {
       setOpa(0);
     };
-  }, [title]);
+  }, [view]);
   return <CanvasWrapper opa={opa} id="scene"></CanvasWrapper>;
 }
 

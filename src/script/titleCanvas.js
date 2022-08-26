@@ -5,7 +5,11 @@ function Canvas() {
     amount = 0,
     mouse = { x: 0, y: 0 };
 
-  var title = document.querySelector("#copy").value;
+  var title = window.location.hash;
+  if (title === "#home") title = "DEV. WOONG";
+  if (title === "#information") title = "INFORMATION";
+  if (title === "#projects") title = "PROJECTS";
+  if (title === "#timeline") title = "TIME LINE";
 
   // var colors = ["#aaeeff", "#66ddff", "#ffffff"];
 
@@ -76,7 +80,11 @@ function Canvas() {
 
   function initScene() {
     setTimeout(() => {
-      title = document.querySelector("#copy").value;
+      title = window.location.hash;
+      if (title === "#home") title = "DEV. WOONG";
+      if (title === "#information") title = "INFORMATION";
+      if (title === "#projects") title = "PROJECTS";
+      if (title === "#timeline") title = "TIME LINE";
 
       ww = canvas.width = 400;
       wh = canvas.height = 100;
@@ -111,10 +119,7 @@ function Canvas() {
     }
   }
 
-  document.querySelector("#nav_1").addEventListener("click", () => initScene());
-  document.querySelector("#nav_2").addEventListener("click", () => initScene());
-  document.querySelector("#nav_3").addEventListener("click", () => initScene());
-  document.querySelector("#nav_4").addEventListener("click", () => initScene());
+  window.addEventListener("title-change", () => initScene());
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("touchmove", onTouchMove);
   window.addEventListener("touchend", onTouchEnd);

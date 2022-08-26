@@ -2,14 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import Title from "./Title";
+import { useRecoilValue } from "recoil";
+import { homeNavState } from "../../atoms";
 
-// import InfoImg from "../../images/linode-brands.svg";
-// import ContactImg from "../../images/circle-nodes-solid.svg";
-// import GitHubImg from "../../images/github.svg";
-// import BlogImg from "../../images/blog.svg";
-// import YoutubeImg from "../../images/youtube.svg";
-
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ view: boolean }>`
   width: 100vw;
   height: 100px;
   background-color: transparent;
@@ -20,6 +16,9 @@ const Wrapper = styled.div`
   top: 0;
   z-index: 4;
   backdrop-filter: blur(5px);
+  transform: ${(props) =>
+    props.view ? "translateY(-120px)" : "translateY(0px)"};
+  transition: transform 0.5s ease-in-out;
 `;
 const ListWrapper = styled.div`
   height: 100%;
@@ -138,14 +137,15 @@ const LinkImage = styled.img`
 `;
 
 interface IHeader {
-  title: string;
   assets: string[];
 }
-function Header({ title, assets }: IHeader) {
+function Header({ assets }: IHeader) {
   const [selected, setSelected] = useState(0);
+  const view = useRecoilValue(homeNavState);
+
   return (
-    <Wrapper>
-      <Title title={title} />
+    <Wrapper view={view === 5}>
+      <Title />
       <ListWrapper>
         <Button
           isSelected={selected === 1}

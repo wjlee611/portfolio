@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { backToMain, homeNavState, loadedAsset } from "../atoms";
-import Header from "../Components/Header/Header";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
 import MyMoreInfo from "../Components/Home/MyMoreInfo";
@@ -17,6 +16,7 @@ import ContactImg from "../images/circle-nodes-solid.svg";
 import GitHubImg from "../images/github.svg";
 import BlogImg from "../images/blog.svg";
 import YoutubeImg from "../images/youtube.svg";
+import { useLocation } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -32,7 +32,6 @@ const ContentWrapper = styled.div`
   }
   position: relative;
   scroll-snap-type: y mandatory;
-  /* overflow-y: scroll; */
   overflow: hidden;
 `;
 const BG = styled.img`
@@ -54,7 +53,8 @@ const ImgAsset = styled.div`
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
-  const [btm, setBtm] = useRecoilState(backToMain);
+  const btm = useRecoilValue(backToMain);
+  const location = useLocation();
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
@@ -70,6 +70,22 @@ function Home() {
       if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
     }, 1);
   }, [view]);
+
+  useEffect(() => {
+    setLoaded(0);
+    if (btm)
+      window.history.replaceState(null, "projects", "/portfolio/#projects");
+    else {
+      if (location.hash === "#home") setView(1);
+      else if (location.hash === "#information") setView(2);
+      else if (location.hash === "#projects") setView(3);
+      else if (location.hash === "#timeline") setView(4);
+      else {
+        window.history.replaceState(null, "projects", "/portfolio/#home");
+        setView(1);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (btm) setView(3);
@@ -121,20 +137,6 @@ function Home() {
         />
       </ImgAsset>
       <ContentWrapper>
-        <Header
-          title={
-            view === 1
-              ? "DEV. WOONG"
-              : view === 2
-              ? "INFOMATION"
-              : view === 3
-              ? "PROJECTS"
-              : view === 4
-              ? "TIME LINE"
-              : "N/A"
-          }
-          assets={[InfoImg, ContactImg, GitHubImg, BlogImg, YoutubeImg]}
-        />
         <HomeNav />
         <div
           style={{

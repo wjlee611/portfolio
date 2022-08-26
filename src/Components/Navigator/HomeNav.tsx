@@ -72,7 +72,11 @@ function HomeNav() {
     <Wrapper>
       <Button
         id="nav_1"
-        onClick={() => setCurrent(1)}
+        onClick={() => {
+          setCurrent(1);
+          window.history.replaceState(null, "home", "/portfolio/#home");
+          window.dispatchEvent(new Event("title-change"));
+        }}
         isSelected={current === 1}
       >
         <span>Home</span>
@@ -80,7 +84,15 @@ function HomeNav() {
       </Button>
       <Button
         id="nav_2"
-        onClick={() => setCurrent(2)}
+        onClick={() => {
+          setCurrent(2);
+          window.history.replaceState(
+            null,
+            "information",
+            "/portfolio/#information"
+          );
+          window.dispatchEvent(new Event("title-change"));
+        }}
         isSelected={current === 2}
       >
         <span>Information</span>
@@ -91,6 +103,8 @@ function HomeNav() {
         onClick={() => {
           setCurrent(3);
           setBackToMain(false);
+          window.history.replaceState(null, "projects", "/portfolio/#projects");
+          window.dispatchEvent(new Event("title-change"));
         }}
         isSelected={current === 3}
       >
@@ -99,7 +113,11 @@ function HomeNav() {
       </Button>
       <Button
         id="nav_4"
-        onClick={() => setCurrent(4)}
+        onClick={() => {
+          setCurrent(4);
+          window.history.replaceState(null, "timeline", "/portfolio/#timeline");
+          window.dispatchEvent(new Event("title-change"));
+        }}
         isSelected={current === 4}
       >
         <span>Time Line</span>

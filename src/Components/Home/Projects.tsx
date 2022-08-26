@@ -7,14 +7,18 @@ const Wrapper = styled.div`
   padding-top: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
   scroll-snap-align: start;
+  & > a {
+    margin: 20px 0;
+  }
 `;
 
 function Projects() {
   return (
     <Wrapper>
-      <h1>Projects</h1>
       <Link
         to={{ pathname: "/talk-kiosk" }}
         style={{ textDecoration: "none", color: "white" }}
