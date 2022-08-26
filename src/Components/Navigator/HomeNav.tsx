@@ -70,10 +70,9 @@ function HomeNav() {
   return (
     <Wrapper>
       <Button
-        id="nav_1"
         onClick={() => {
           setCurrent(1);
-          window.history.replaceState(null, "home", "/portfolio/#home");
+          window.history.pushState(null, "home", "/portfolio/#home");
         }}
         isSelected={current === 1}
       >
@@ -81,10 +80,9 @@ function HomeNav() {
         <BtnBG />
       </Button>
       <Button
-        id="nav_2"
         onClick={() => {
           setCurrent(2);
-          window.history.replaceState(
+          window.history.pushState(
             null,
             "information",
             "/portfolio/#information"
@@ -96,10 +94,9 @@ function HomeNav() {
         <BtnBG />
       </Button>
       <Button
-        id="nav_3"
         onClick={() => {
           setCurrent(3);
-          window.history.replaceState(null, "projects", "/portfolio/#projects");
+          window.history.pushState(null, "projects", "/portfolio/#projects");
         }}
         isSelected={current === 3}
       >
@@ -107,10 +104,9 @@ function HomeNav() {
         <BtnBG />
       </Button>
       <Button
-        id="nav_4"
         onClick={() => {
           setCurrent(4);
-          window.history.replaceState(null, "timeline", "/portfolio/#timeline");
+          window.history.pushState(null, "timeline", "/portfolio/#timeline");
         }}
         isSelected={current === 4}
       >

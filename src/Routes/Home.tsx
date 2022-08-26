@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { homeNavState, inProject, loadedAsset } from "../atoms";
 import LoadingScreen from "../Components/Home/LoadingScreen";
@@ -53,29 +53,67 @@ function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
   const [isInProject, setInProject] = useRecoilState(inProject);
+  const [isFirstTime, setIsFirstTime] = useState(true);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
   const refMInfo = useRef<null | HTMLDivElement>(null);
   const refProj = useRef<null | HTMLDivElement>(null);
   const refTL = useRef<null | HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (isInProject) {
-      window.history.replaceState(null, "projects", "/portfolio/#projects");
-      setView(3);
-    } else window.history.replaceState(null, "projects", "/portfolio/#home");
-    setInProject(false);
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (view === 1) refInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 2) refMInfo.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 3) refProj.current?.scrollIntoView({ behavior: "smooth" });
-      if (view === 4) refTL.current?.scrollIntoView({ behavior: "smooth" });
-      window.dispatchEvent(new Event("title-change"));
-    }, 1);
-  }, [view]);
+    if (isFirstTime) {
+      if (isInProject) {
+        window.history.replaceState(null, "projects", "/portfolio/#projects");
+        setView(3);
+        setInProject(false);
+      }
+      setIsFirstTime(false);
+    }
+
+    if (window.location.hash === "#home") {
+      setView(1);
+      setTimeout(() => {
+        refInfo.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
+    }
+    if (window.location.hash === "#information") {
+      setView(2);
+      setTimeout(() => {
+        refMInfo.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
+    }
+    if (window.location.hash === "#projects") {
+      setView(3);
+      setTimeout(() => {
+        refProj.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
+    }
+    if (window.location.hash === "#timeline") {
+      setView(4);
+      setTimeout(() => {
+        refTL.current?.scrollIntoView({
+          behavior: "smooth",
+          inline: "start",
+          block: "start",
+        });
+      }, 10);
+    }
+    window.dispatchEvent(new Event("title-change"));
+  }, [window.location.hash, view]);
 
   return (
     <Wrapper>
