@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import Title from "./Title";
 import { useRecoilValue } from "recoil";
-import { homeNavState, inProject } from "../../atoms";
+import { inProject } from "../../atoms";
 
 const Wrapper = styled.div<{ view: boolean }>`
   width: 100vw;

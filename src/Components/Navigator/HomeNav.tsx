@@ -1,6 +1,6 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { homeNavState } from "../../atoms";
+import { homeNavState, onScroll } from "../../atoms";
 
 const Wrapper = styled.div`
   width: 150px;
@@ -67,12 +67,16 @@ const BtnBG = styled.div`
 
 function HomeNav() {
   const [current, setCurrent] = useRecoilState(homeNavState);
+  const isScroll = useRecoilValue(onScroll);
+
   return (
     <Wrapper>
       <Button
         onClick={() => {
-          setCurrent(1);
-          window.history.pushState(null, "home", "/portfolio/#home");
+          if (!isScroll) {
+            setCurrent(1);
+            window.history.pushState(null, "home", "/portfolio/#home");
+          }
         }}
         isSelected={current === 1}
       >
@@ -81,12 +85,14 @@ function HomeNav() {
       </Button>
       <Button
         onClick={() => {
-          setCurrent(2);
-          window.history.pushState(
-            null,
-            "information",
-            "/portfolio/#information"
-          );
+          if (!isScroll) {
+            setCurrent(2);
+            window.history.pushState(
+              null,
+              "information",
+              "/portfolio/#information"
+            );
+          }
         }}
         isSelected={current === 2}
       >
@@ -95,8 +101,10 @@ function HomeNav() {
       </Button>
       <Button
         onClick={() => {
-          setCurrent(3);
-          window.history.pushState(null, "projects", "/portfolio/#projects");
+          if (!isScroll) {
+            setCurrent(3);
+            window.history.pushState(null, "projects", "/portfolio/#projects");
+          }
         }}
         isSelected={current === 3}
       >
@@ -105,8 +113,10 @@ function HomeNav() {
       </Button>
       <Button
         onClick={() => {
-          setCurrent(4);
-          window.history.pushState(null, "timeline", "/portfolio/#timeline");
+          if (!isScroll) {
+            setCurrent(4);
+            window.history.pushState(null, "timeline", "/portfolio/#timeline");
+          }
         }}
         isSelected={current === 4}
       >

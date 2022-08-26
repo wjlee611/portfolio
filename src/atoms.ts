@@ -10,6 +10,11 @@ export const loadedAsset = atom<number>({
   default: 0,
 });
 
+export const onScroll = atom<boolean>({
+  key: "onScroll",
+  default: false,
+});
+
 export const inProject = atom<boolean>({
   key: "inProject",
   default: false,
