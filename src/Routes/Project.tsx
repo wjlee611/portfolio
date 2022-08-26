@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { backToMain, homeNavState, inProject } from "../atoms";
+import { homeNavState, inProject } from "../atoms";
 import HonbabSignal from "../Components/Project/HonbabSignal";
 import TalkKiosk from "../Components/Project/TalkKiosk";
 
@@ -23,7 +23,7 @@ interface IRouteParams {
 }
 function Project() {
   const { project } = useParams<IRouteParams>();
-  const setBackToMain = useSetRecoilState(backToMain);
+  const setView = useSetRecoilState(homeNavState);
   const setInProject = useSetRecoilState(inProject);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function Project() {
       <Link
         to={{ pathname: "/" }}
         style={{ textDecoration: "none", color: "white" }}
-        onClick={() => setBackToMain(true)}
+        onClick={() => setView(3)}
       >
         Back to main
       </Link>

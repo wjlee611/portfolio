@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { backToMain, homeNavState } from "../../atoms";
+import { homeNavState } from "../../atoms";
 
 const Wrapper = styled.div`
   width: 150px;
@@ -67,7 +67,6 @@ const BtnBG = styled.div`
 
 function HomeNav() {
   const [current, setCurrent] = useRecoilState(homeNavState);
-  const setBackToMain = useSetRecoilState(backToMain);
   return (
     <Wrapper>
       <Button
@@ -102,7 +101,6 @@ function HomeNav() {
         id="nav_3"
         onClick={() => {
           setCurrent(3);
-          setBackToMain(false);
           window.history.replaceState(null, "projects", "/portfolio/#projects");
           window.dispatchEvent(new Event("title-change"));
         }}

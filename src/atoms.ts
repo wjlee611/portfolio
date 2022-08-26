@@ -10,11 +10,6 @@ export const loadedAsset = atom<number>({
   default: 0,
 });
 
-export const backToMain = atom<boolean>({
-  key: "backToMain",
-  default: false,
-});
-
 export const inProject = atom<boolean>({
   key: "inProject",
   default: false,

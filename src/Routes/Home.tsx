@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { backToMain, homeNavState, inProject, loadedAsset } from "../atoms";
+import { homeNavState, inProject, loadedAsset } from "../atoms";
 import LoadingScreen from "../Components/Home/LoadingScreen";
 import MyInfo from "../Components/Home/MyInfo";
 import MyMoreInfo from "../Components/Home/MyMoreInfo";
@@ -16,7 +16,6 @@ import ContactImg from "../images/circle-nodes-solid.svg";
 import GitHubImg from "../images/github.svg";
 import BlogImg from "../images/blog.svg";
 import YoutubeImg from "../images/youtube.svg";
-import { useLocation } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -53,7 +52,6 @@ const ImgAsset = styled.div`
 function Home() {
   const [loaded, setLoaded] = useRecoilState(loadedAsset);
   const [view, setView] = useRecoilState(homeNavState);
-  const [btm, setBtm] = useRecoilState(backToMain);
   const setInProject = useSetRecoilState(inProject);
 
   const refInfo = useRef<null | HTMLDivElement>(null);
@@ -62,13 +60,7 @@ function Home() {
   const refTL = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    if (btm) {
-      window.history.replaceState(null, "projects", "/portfolio/#projects");
-      setView(3);
-      setBtm(false);
-    } else {
-      window.history.replaceState(null, "projects", "/portfolio/#home");
-    }
+    window.history.replaceState(null, "projects", "/portfolio/#home");
     setInProject(false);
   }, []);
 
