@@ -4,17 +4,13 @@ import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 import { Engine } from "tsparticles-engine";
 import { conf } from "../../script/pjs-conf";
-import { useRecoilValue } from "recoil";
-import { homeNavState } from "../../atoms";
 
-const Wrapper = styled.div<{ inview: "true" | "false" }>`
+const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   color: white;
   position: relative;
   scroll-snap-align: start;
-  opacity: ${(props) => (props.inview === "true" ? 1 : 0)};
-  transition: opacity 0.2s ease-out;
 `;
 const ParticleWrapper = styled.div`
   width: 100%;
@@ -63,12 +59,11 @@ const ContentWrapper = styled.div`
 `;
 
 function MyInfo() {
-  const view = useRecoilValue(homeNavState);
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
   return (
-    <Wrapper inview={view === 1 ? "true" : "false"}>
+    <Wrapper>
       <ParticleWrapper>
         <Particles init={particlesInit} options={{ ...conf }} />
       </ParticleWrapper>

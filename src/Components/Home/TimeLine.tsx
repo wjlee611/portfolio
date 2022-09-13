@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Sticky from "react-sticky-el";
 import { useRecoilValue } from "recoil";
 import { homeNavState } from "../../atoms";
 import AA from "./TimeLine/AA";
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: center;
   scroll-snap-align: start;
 `;
-const ScrollArea = styled.div<{ inview: "true" | "false" }>`
+const ScrollArea = styled.div`
   width: 100%;
   height: 100vh;
   padding: 0 calc(50% - 400px);
@@ -31,8 +30,6 @@ const ScrollArea = styled.div<{ inview: "true" | "false" }>`
     width: 0;
     background: transparent;
   }
-  opacity: ${(props) => (props.inview === "true" ? 1 : 0)};
-  transition: opacity 0.2s ease-out;
 `;
 const Block = styled.div`
   width: 100%;
@@ -42,6 +39,8 @@ const HeaderWrapper = styled.div`
   height: 130px;
   color: white;
   display: flex;
+  position: sticky;
+  top: -100px;
 `;
 const ContentsWrapper = styled.div`
   width: 100%;
@@ -158,9 +157,9 @@ function TimeLine() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ container: ref });
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 300,
+    stiffness: 200,
     damping: 30,
-    restDelta: 0.005,
+    restDelta: 0.001,
   });
 
   const today = new Date();
@@ -174,35 +173,24 @@ function TimeLine() {
         style={{ scaleX }}
         inview={view === 4 ? "true" : "false"}
       />
-      <ScrollArea
-        className="scroll-area"
-        inview={view === 4 ? "true" : "false"}
-        ref={ref}
-      >
+      <ScrollArea className="scroll-area" ref={ref}>
         <Reference>
           ☑︎ 앞 3개의 타임라인은 서론의 성격이 강합니다. 참고 부탁드립니다.
         </Reference>
         {timelineData.map((arr, i) => (
           <Block key={i} className="block">
-            <Sticky
-              scrollElement=".scroll-area"
-              boundaryElement=".block"
-              positionRecheckInterval={1}
-              topOffset={-1}
-            >
-              <HeaderWrapper>
-                <Time>
-                  <HeaderT>{arr[0]}</HeaderT>
-                </Time>
-                <LineWrapper>
-                  {i === 0 ? null : <LineH />}
-                  <Circle />
-                </LineWrapper>
-                <ContentH>
-                  <HeaderH>{arr[1]}</HeaderH>
-                </ContentH>
-              </HeaderWrapper>
-            </Sticky>
+            <HeaderWrapper>
+              <Time>
+                <HeaderT>{arr[0]}</HeaderT>
+              </Time>
+              <LineWrapper>
+                {i === 0 ? null : <LineH />}
+                <Circle />
+              </LineWrapper>
+              <ContentH>
+                <HeaderH>{arr[1]}</HeaderH>
+              </ContentH>
+            </HeaderWrapper>
             <ContentsWrapper>
               <Time />
               <LineWrapper>
@@ -227,39 +215,32 @@ function TimeLine() {
           </Block>
         ))}
         <Block key={"today"} className="block">
-          <Sticky
-            scrollElement=".scroll-area"
-            boundaryElement=".block"
-            positionRecheckInterval={1}
-            topOffset={-1}
-          >
-            <HeaderWrapper>
-              <Time>
-                <HeaderT
-                  style={{
-                    borderRight: "1px solid gold",
-                  }}
-                >{`${year}.${("00" + month).slice(-2)}.${day}`}</HeaderT>
-              </Time>
-              <LineWrapper>
-                <LineH
-                  style={{
-                    background: "linear-gradient(#22bbff 70%, gold 90%)",
-                  }}
-                />
-                <Circle style={{ backgroundColor: "gold" }} />
-              </LineWrapper>
-              <ContentH>
-                <HeaderH
-                  style={{
-                    borderLeft: "1px solid gold",
-                  }}
-                >
-                  ...그리고 오늘
-                </HeaderH>
-              </ContentH>
-            </HeaderWrapper>
-          </Sticky>
+          <HeaderWrapper>
+            <Time>
+              <HeaderT
+                style={{
+                  borderRight: "1px solid gold",
+                }}
+              >{`${year}.${("00" + month).slice(-2)}.${day}`}</HeaderT>
+            </Time>
+            <LineWrapper>
+              <LineH
+                style={{
+                  background: "linear-gradient(#22bbff 70%, gold 90%)",
+                }}
+              />
+              <Circle style={{ backgroundColor: "gold" }} />
+            </LineWrapper>
+            <ContentH>
+              <HeaderH
+                style={{
+                  borderLeft: "1px solid gold",
+                }}
+              >
+                ...그리고 오늘
+              </HeaderH>
+            </ContentH>
+          </HeaderWrapper>
           <ContentsWrapper>
             <Time />
             <LineWrapper>
