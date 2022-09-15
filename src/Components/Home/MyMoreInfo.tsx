@@ -1,5 +1,5 @@
-import { AnimatePresence, motion, Variants } from "framer-motion";
-import { useState } from "react";
+import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 import WoongImg from "../../images/woong.jpeg";
@@ -12,7 +12,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
+  overflow-y: scroll;
+  position: relative;
   &::-webkit-scrollbar {
     width: 0;
     background: transparent;
@@ -20,24 +21,23 @@ const Wrapper = styled.div`
   scroll-snap-align: start;
 `;
 const ContentsWrapper = styled.div`
-  height: 500px;
+  width: 600px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
   color: white;
   position: relative;
-  &:first-child {
-    padding: 0 20px;
-  }
-  &:last-child {
-    width: 600px;
-  }
+`;
+const ContentsAnimateWrapper = styled(motion.div)`
+  position: absolute;
 `;
 const Hello = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 320px;
   & > span {
     font-size: 16px;
     margin-top: 10px;
@@ -48,6 +48,13 @@ const Hello = styled.div`
     color: #22bbff;
   }
 `;
+const Hint = styled(motion.span)`
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  position: absolute;
+  z-index: 0;
+`;
 const ProfileImg = styled.img`
   width: 300px;
   height: 300px;
@@ -55,8 +62,26 @@ const ProfileImg = styled.img`
   border-bottom: 2px solid #22bbff;
   border-radius: 150px;
   margin-bottom: 20px;
+  position: absolute;
+  z-index: 1;
+  &:hover {
+    transform: rotateZ(10deg);
+  }
+  transition: transform 0.2s ease-in-out;
+  will-change: transform;
 `;
 
+const BackBtn = styled(motion.button)`
+  width: 150px;
+  height: 40px;
+  background: linear-gradient(45deg, #22bbff, #3ad1fb);
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-family: "Baloo Thambi 2", "Nanum Gothic Coding", Verdana;
+  font-size: 20px;
+`;
 const InfoNav = styled.div`
   width: 100%;
   height: 60px;
@@ -81,15 +106,14 @@ const InfoNavBtnWrapper = styled.div`
     background-color: #22bbff;
   }
 `;
-const InfoWrapper = styled(motion.div)`
+const InfoAnimateWrapper = styled(motion.div)`
   width: 100%;
-  height: 600px;
+  height: 400px;
   padding-left: 10px;
-  padding-top: 20px;
   position: absolute;
-  top: 60px;
+  top: 140px;
 `;
-const DetailWrapper = styled.div<{ scrollBar: boolean }>`
+const InfoWrapper = styled.div<{ scrollBar: boolean }>`
   width: 100%;
   height: 400px;
   display: flex;
@@ -151,8 +175,8 @@ const SendFrom = styled.div`
     width: 100px;
     display: flex;
     justify-content: center;
+    background: linear-gradient(45deg, #22bbff, #3ad1fb);
     align-items: center;
-    background-color: #22bbff;
     border-radius: 10px;
     padding: 5px 0;
     margin-right: 10px;
@@ -162,6 +186,32 @@ const SendFrom = styled.div`
   }
 `;
 
+const ContentsWrapperVariants: Variants = {
+  init: {
+    transform: "translateX(-20px)",
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+  ani: {
+    transform: "translateX(0px)",
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+  exit: {
+    transform: "translateX(20px)",
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+};
 const InfoWrapperVariants: Variants = {
   init: { transform: "translateY(-10px)", opacity: 0 },
   ani: {
@@ -190,103 +240,180 @@ const skills = [
 
 function MyMoreInfo() {
   const [selected, setSelected] = useState(1);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   return (
     <Wrapper>
-      <ContentsWrapper>
-        <ProfileImg src={WoongImg} alt="profileImg" />
-        <Hello>
-          <span>어제보다 더 나은 사람이 되자!</span>
-          <span></span>
-          <span>안녕하세요 프론트엔드 개발자 웅 입니다!</span>
-          <span>부족한 만큼 경각심을 갖고 꾸준히 배워나가고 있습니다.</span>
-          <span>
-            풀스택 개발자를 목표로 백엔드와 인공지능도 공부중 입니다..!
-          </span>
-          <span></span>
-          <span>
-            토이 프로젝트 만드는 것과 영상편집, 싱글 플레이 게임을 좋아합니다.
-          </span>
-        </Hello>
-      </ContentsWrapper>
-      <ContentsWrapper>
-        <InfoNav>
-          <AnimatePresence>
-            {[1, 2, 3].map((i) => (
-              <InfoNavBtnWrapper key={i}>
-                <button onClick={() => setSelected(i)}>
-                  {i === 1
-                    ? "Email Contact"
-                    : i === 2
-                    ? "Etc. Contacts"
-                    : "Skills"}
-                </button>
-                {selected === i ? (
-                  <motion.div layoutId="indicator"></motion.div>
-                ) : null}
-              </InfoNavBtnWrapper>
-            ))}
-          </AnimatePresence>
-        </InfoNav>
-        <AnimatePresence>
-          {selected === 1 ? (
-            <InfoWrapper
-              key="email"
-              variants={InfoWrapperVariants}
-              initial="init"
-              animate="ani"
-              exit="exit"
-            >
-              <SendFrom>
-                <span>Send to</span>
-                <span>wjlee611@gmail.com</span>
-              </SendFrom>
-              <EmailForm />
-            </InfoWrapper>
-          ) : selected === 2 ? (
-            <InfoWrapper
-              key="etc"
-              variants={InfoWrapperVariants}
-              initial="init"
-              animate="ani"
-              exit="exit"
-            >
-              <DetailWrapper scrollBar={false}>
-                {["Phone", "Kakao Id"].map((method) => (
-                  <div key={method}>
-                    <h1>{method}</h1>
-                    <span>
-                      {method === "Phone" ? "+82 10-2124-7513" : "greencreeper"}
-                    </span>
-                  </div>
+      <div
+        id="inview_detector"
+        style={{ position: "absolute", pointerEvents: "none" }}
+        ref={ref}
+      ></div>
+      <AnimatePresence>
+        {isClicked ? (
+          <ContentsAnimateWrapper
+            key="contact"
+            variants={ContentsWrapperVariants}
+            initial="init"
+            animate="ani"
+            exit="exit"
+            onAnimationComplete={() => setIsAnimating(false)}
+          >
+            <ContentsWrapper>
+              <BackBtn
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                onClick={() => {
+                  if (!isAnimating) {
+                    setIsAnimating(true);
+                    setIsClicked(false);
+                  }
+                }}
+              >
+                BACK
+              </BackBtn>
+              <InfoNav>
+                {[1, 2, 3].map((i) => (
+                  <InfoNavBtnWrapper key={i}>
+                    <button
+                      onClick={() => {
+                        if (!isAnimating && selected !== i) {
+                          setIsAnimating(true);
+                          setSelected(i);
+                        }
+                      }}
+                    >
+                      {i === 1
+                        ? "Email Contact"
+                        : i === 2
+                        ? "Etc. Contacts"
+                        : "Skills"}
+                    </button>
+                    {selected === i ? (
+                      <motion.div layoutId="indicator"></motion.div>
+                    ) : null}
+                  </InfoNavBtnWrapper>
                 ))}
-              </DetailWrapper>
-            </InfoWrapper>
-          ) : (
-            <InfoWrapper
-              key="skill"
-              variants={InfoWrapperVariants}
-              initial="init"
-              animate="ani"
-              exit="exit"
-            >
-              <DetailWrapper scrollBar={true}>
-                {["Programming Languages", "Frameworks", "Tools"].map(
-                  (skill, idx) => (
-                    <div key={skill}>
-                      <h1>{skill}</h1>
-                      <div>
-                        {skills[idx].map((i) => (
-                          <span key={i}>{i}</span>
-                        ))}
-                      </div>
-                    </div>
-                  )
+              </InfoNav>
+              <AnimatePresence>
+                {selected === 1 ? (
+                  <InfoAnimateWrapper
+                    key="email"
+                    variants={InfoWrapperVariants}
+                    initial="init"
+                    animate="ani"
+                    exit="exit"
+                    onAnimationComplete={() => setIsAnimating(false)}
+                  >
+                    <SendFrom>
+                      <span>Send to</span>
+                      <span>wjlee611@gmail.com</span>
+                    </SendFrom>
+                    <EmailForm />
+                  </InfoAnimateWrapper>
+                ) : selected === 2 ? (
+                  <InfoAnimateWrapper
+                    key="etc"
+                    variants={InfoWrapperVariants}
+                    initial="init"
+                    animate="ani"
+                    exit="exit"
+                    onAnimationComplete={() => setIsAnimating(false)}
+                  >
+                    <InfoWrapper scrollBar={false}>
+                      {["Phone", "Kakao Id"].map((method) => (
+                        <div key={method}>
+                          <h1>{method}</h1>
+                          <span>
+                            {method === "Phone"
+                              ? "+82 10-2124-7513"
+                              : "greencreeper"}
+                          </span>
+                        </div>
+                      ))}
+                    </InfoWrapper>
+                  </InfoAnimateWrapper>
+                ) : (
+                  <InfoAnimateWrapper
+                    key="skill"
+                    variants={InfoWrapperVariants}
+                    initial="init"
+                    animate="ani"
+                    exit="exit"
+                    onAnimationComplete={() => setIsAnimating(false)}
+                  >
+                    <InfoWrapper scrollBar={true}>
+                      {["Programming Languages", "Frameworks", "Tools"].map(
+                        (skill, idx) => (
+                          <div key={skill}>
+                            <h1>{skill}</h1>
+                            <div>
+                              {skills[idx].map((i) => (
+                                <span key={i}>{i}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </InfoWrapper>
+                  </InfoAnimateWrapper>
                 )}
-              </DetailWrapper>
-            </InfoWrapper>
-          )}
-        </AnimatePresence>
-      </ContentsWrapper>
+              </AnimatePresence>
+            </ContentsWrapper>
+          </ContentsAnimateWrapper>
+        ) : (
+          <ContentsAnimateWrapper
+            key="info"
+            variants={ContentsWrapperVariants}
+            initial="init"
+            animate="ani"
+            exit="exit"
+            onAnimationComplete={() => setIsAnimating(false)}
+          >
+            <ContentsWrapper>
+              <ProfileImg
+                src={WoongImg}
+                alt="profileImg"
+                onClick={() => {
+                  if (!isAnimating) {
+                    setIsAnimating(true);
+                    setIsClicked(true);
+                  }
+                }}
+              />
+              <Hello>
+                <span>어제보다 더 나은 사람이 되자!</span>
+                <span></span>
+                <span>안녕하세요 프론트엔드 개발자 웅 입니다!</span>
+                <span>
+                  부족한 만큼 경각심을 갖고 꾸준히 배워나가고 있습니다.
+                </span>
+                <span>
+                  풀스택 개발자를 목표로 백엔드와 인공지능도 공부중 입니다..!
+                </span>
+                <span></span>
+                <span>
+                  토이 프로젝트 만드는 것과 영상편집, 싱글 플레이 게임을
+                  좋아합니다.
+                </span>
+              </Hello>
+              {isInView ? (
+                <Hint
+                  initial={{ top: "20px" }}
+                  animate={{ top: "-20px" }}
+                  transition={{ delay: 1 }}
+                >
+                  Click me to contact :&#41;
+                </Hint>
+              ) : null}
+            </ContentsWrapper>
+          </ContentsAnimateWrapper>
+        )}
+      </AnimatePresence>
     </Wrapper>
   );
 }

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { CircleLoader } from "react-spinners";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -27,9 +26,6 @@ interface ILoadingScreen {
 }
 function LoadingScreen({ status }: ILoadingScreen) {
   const assets = useRecoilValue(loadedAsset);
-  useEffect(() => {
-    console.log(status, assets);
-  }, [assets]);
   return (
     <Wrapper>
       <CircleLoader color="#22bbff" loading speedMultiplier={1} />

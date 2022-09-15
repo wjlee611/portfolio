@@ -23,7 +23,7 @@ const EmailInputWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #22bbff;
+    background: linear-gradient(45deg, #22bbff, #3ad1fb);
     border-radius: 10px;
     padding: 5px 0;
     margin-right: 10px;
