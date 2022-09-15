@@ -60,11 +60,12 @@ function Home() {
   const refProj = useRef<null | HTMLDivElement>(null);
   const refTL = useRef<null | HTMLDivElement>(null);
 
+  const titleChangeEvent = new Event("title-change");
+
   useEffect(() => {
     if (isFirstTime) {
       if (isInProject) {
         window.history.replaceState(null, "projects", "/portfolio/#projects");
-        setView(3);
       } else {
         if (
           window.location.hash !== "#information" &&
@@ -72,62 +73,79 @@ function Home() {
           window.location.hash !== "#timeline"
         ) {
           window.history.replaceState(null, "projects", "/portfolio/#home");
-          setView(1);
         }
       }
       setIsFirstTime(false);
       setInProject(false);
+      if (window.location.hash === "#home") {
+        setView(1);
+        refInfo.current?.scrollIntoView({
+          inline: "start",
+          block: "start",
+        });
+      }
+      if (window.location.hash === "#information") {
+        setView(2);
+        refMInfo.current?.scrollIntoView({
+          inline: "start",
+          block: "start",
+        });
+      }
+      if (window.location.hash === "#projects") {
+        setView(3);
+        refProj.current?.scrollIntoView({
+          inline: "start",
+          block: "start",
+        });
+      }
+      if (window.location.hash === "#timeline") {
+        setView(4);
+        refTL.current?.scrollIntoView({
+          inline: "start",
+          block: "start",
+        });
+      }
+      window.dispatchEvent(titleChangeEvent);
     }
+  }, [isFirstTime, isInProject]);
 
-    if (window.location.hash === "#home") {
-      setView(1);
-      setTimeout(() => {
+  useEffect(() => {
+    if (!(isFirstTime || isInProject)) {
+      if (window.location.hash === "#home") {
+        setView(1);
         refInfo.current?.scrollIntoView({
           behavior: "smooth",
           inline: "start",
           block: "start",
         });
-      }, 10);
-    }
-    if (window.location.hash === "#information") {
-      setView(2);
-      setTimeout(() => {
+      }
+      if (window.location.hash === "#information") {
+        setView(2);
         refMInfo.current?.scrollIntoView({
           behavior: "smooth",
           inline: "start",
           block: "start",
         });
-      }, 10);
-    }
-    if (window.location.hash === "#projects") {
-      setView(3);
-      setTimeout(() => {
+      }
+      if (window.location.hash === "#projects") {
+        setView(3);
         refProj.current?.scrollIntoView({
           behavior: "smooth",
           inline: "start",
           block: "start",
         });
-      }, 10);
-    }
-    if (window.location.hash === "#timeline") {
-      setView(4);
-      setTimeout(() => {
+      }
+      if (window.location.hash === "#timeline") {
+        setView(4);
         refTL.current?.scrollIntoView({
           behavior: "smooth",
           inline: "start",
           block: "start",
         });
-      }, 10);
+      }
+      window.dispatchEvent(titleChangeEvent);
     }
-    window.dispatchEvent(new Event("title-change"));
-  }, [
-    window.location.hash,
-    view,
-    isFirstTime,
-    isInProject,
-    setView,
-    setInProject,
-  ]);
+  }, [window.location.hash]);
 
   return (
     <Wrapper>
