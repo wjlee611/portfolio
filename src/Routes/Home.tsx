@@ -11,11 +11,6 @@ import TimeLine from "../Components/Home/TimeLine";
 import HomeNav from "../Components/Navigator/HomeNav";
 
 import backgroundImg from "../images/background.jpg";
-import InfoImg from "../images/linode-brands.svg";
-import ContactImg from "../images/circle-nodes-solid.svg";
-import GitHubImg from "../images/github.svg";
-import BlogImg from "../images/blog.svg";
-import YoutubeImg from "../images/youtube.svg";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -41,12 +36,6 @@ const BG = styled.img`
   top: 0;
   z-index: 1;
   filter: brightness(70%);
-`;
-const ImgAsset = styled.div`
-  position: fixed;
-  height: 0;
-  opacity: 0;
-  pointer-events: none;
 `;
 
 function Home() {
@@ -75,7 +64,6 @@ function Home() {
           window.history.replaceState(null, "projects", "/portfolio/#home");
         }
       }
-      setIsFirstTime(false);
       setInProject(false);
       if (window.location.hash === "#home") {
         setView(1);
@@ -106,6 +94,7 @@ function Home() {
         });
       }
       window.dispatchEvent(titleChangeEvent);
+      setIsFirstTime(false);
     }
   }, [isFirstTime, isInProject]);
 
@@ -165,33 +154,6 @@ function Home() {
         alt="bg"
         onLoad={() => setLoaded((prev) => prev + 1)}
       />
-      <ImgAsset className="Image_Assets_Preload">
-        <img
-          src={InfoImg}
-          alt="InfoImg"
-          onLoad={() => setLoaded((prev) => prev + 1)}
-        />
-        <img
-          src={ContactImg}
-          alt="ContactImg"
-          onLoad={() => setLoaded((prev) => prev + 1)}
-        />
-        <img
-          src={GitHubImg}
-          alt="GitHubImg"
-          onLoad={() => setLoaded((prev) => prev + 1)}
-        />
-        <img
-          src={BlogImg}
-          alt="BlogImg"
-          onLoad={() => setLoaded((prev) => prev + 1)}
-        />
-        <img
-          src={YoutubeImg}
-          alt="YoutubeImg"
-          onLoad={() => setLoaded((prev) => prev + 1)}
-        />
-      </ImgAsset>
       <ContentWrapper>
         <HomeNav />
         <div

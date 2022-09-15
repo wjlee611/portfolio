@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import Title from "./Title";
 import { useRecoilValue } from "recoil";
-import { inProject, loadedAsset } from "../../atoms";
+import { inProject } from "../../atoms";
 
 const Wrapper = styled.div<{ view: boolean }>`
   width: 100vw;
@@ -140,12 +140,10 @@ interface IHeader {
   assets: string[];
 }
 function Header({ assets }: IHeader) {
-  const loaded = useRecoilValue(loadedAsset);
   const [selected, setSelected] = useState(0);
   const isProject = useRecoilValue(inProject);
-
   return (
-    <Wrapper view={isProject && loaded >= 6}>
+    <Wrapper view={isProject}>
       <Title />
       <ListWrapper>
         <Button
