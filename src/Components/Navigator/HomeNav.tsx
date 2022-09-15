@@ -17,7 +17,11 @@ const Wrapper = styled.div`
 `;
 const Button = styled.button<{ isSelected: boolean }>`
   width: 150px;
-  height: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   border: none;
   color: ${(props) => (props.isSelected ? "#22bbff" : "#FFFFFF")};
@@ -37,7 +41,7 @@ const Button = styled.button<{ isSelected: boolean }>`
     padding-right: 10px;
     padding-left: 20px;
     position: absolute;
-    top: 0;
+    top: calc(50% - 15px);
     right: 0;
     z-index: 2;
   }
@@ -59,9 +63,9 @@ const BtnBG = styled.div`
   justify-content: flex-end;
   align-items: center;
   position: absolute;
-  top: 0;
+  top: calc(50% - 15px);
   right: -20px;
-  background: linear-gradient(90deg, #22bbff 1%, #00000077 5%);
+  background: linear-gradient(270deg, #22bbff 1%, #00000077 5%);
   z-index: 1;
 `;
 
