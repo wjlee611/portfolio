@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `;
 const ContentsWrapper = styled.div`
   width: 600px;
-  height: 550px;
+  min-height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,11 +33,16 @@ const ContentsWrapper = styled.div`
 const ContentsAnimateWrapper = styled(motion.div)`
   position: absolute;
 `;
-const Hello = styled.div`
+const InfoContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 320px;
+`;
+const Hello = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   & > span {
     font-size: 16px;
     margin-top: 10px;
@@ -232,12 +237,6 @@ const InfoWrapperVariants: Variants = {
   },
 };
 
-const skills = [
-  ["JavaScript", "TypeScript", "Python", "HTML", "CSS", "C", "C++"],
-  ["Node.js", "React.js"],
-  ["Git", "Docker", "Premiere Pro", "After Effect", "Photoshop"],
-];
-
 function MyMoreInfo() {
   const [selected, setSelected] = useState(1);
   const [isClicked, setIsClicked] = useState(false);
@@ -277,7 +276,7 @@ function MyMoreInfo() {
                 BACK
               </BackBtn>
               <InfoNav>
-                {[1, 2, 3].map((i) => (
+                {[1, 2].map((i) => (
                   <InfoNavBtnWrapper key={i}>
                     <button
                       onClick={() => {
@@ -287,11 +286,7 @@ function MyMoreInfo() {
                         }
                       }}
                     >
-                      {i === 1
-                        ? "Email Contact"
-                        : i === 2
-                        ? "Etc. Contacts"
-                        : "Skills"}
+                      {i === 1 ? "Email Contact" : "Etc. Contacts"}
                     </button>
                     {selected === i ? (
                       <motion.div layoutId="indicator"></motion.div>
@@ -315,7 +310,7 @@ function MyMoreInfo() {
                     </SendFrom>
                     <EmailForm />
                   </InfoAnimateWrapper>
-                ) : selected === 2 ? (
+                ) : (
                   <InfoAnimateWrapper
                     key="etc"
                     variants={InfoWrapperVariants}
@@ -335,30 +330,6 @@ function MyMoreInfo() {
                           </span>
                         </div>
                       ))}
-                    </InfoWrapper>
-                  </InfoAnimateWrapper>
-                ) : (
-                  <InfoAnimateWrapper
-                    key="skill"
-                    variants={InfoWrapperVariants}
-                    initial="init"
-                    animate="ani"
-                    exit="exit"
-                    onAnimationComplete={() => setIsAnimating(false)}
-                  >
-                    <InfoWrapper scrollBar={true}>
-                      {["Programming Languages", "Frameworks", "Tools"].map(
-                        (skill, idx) => (
-                          <div key={skill}>
-                            <h1>{skill}</h1>
-                            <div>
-                              {skills[idx].map((i) => (
-                                <span key={i}>{i}</span>
-                              ))}
-                            </div>
-                          </div>
-                        )
-                      )}
                     </InfoWrapper>
                   </InfoAnimateWrapper>
                 )}
@@ -385,22 +356,24 @@ function MyMoreInfo() {
                   }
                 }}
               />
-              <Hello>
-                <span>어제보다 더 나은 사람이 되자!</span>
-                <span></span>
-                <span>안녕하세요 프론트엔드 개발자 웅 입니다!</span>
-                <span>
-                  부족한 만큼 경각심을 갖고 꾸준히 배워나가고 있습니다.
-                </span>
-                <span>
-                  풀스택 개발자를 목표로 백엔드와 인공지능도 공부중 입니다..!
-                </span>
-                <span></span>
-                <span>
-                  토이 프로젝트 만드는 것과 영상편집, 싱글 플레이 게임을
-                  좋아합니다.
-                </span>
-              </Hello>
+              <InfoContentWrapper>
+                <Hello>
+                  <span>어제보다 더 나은 사람이 되자!</span>
+                  <span></span>
+                  <span>안녕하세요 프론트엔드 개발자 웅 입니다!</span>
+                  <span>
+                    부족한 만큼 경각심을 갖고 꾸준히 배워나가고 있습니다.
+                  </span>
+                  <span>
+                    풀스택 개발자를 목표로 백엔드와 인공지능도 공부중 입니다..!
+                  </span>
+                  <span></span>
+                  <span>
+                    토이 프로젝트 만드는 것과 영상편집, 싱글 플레이 게임을
+                    좋아합니다.
+                  </span>
+                </Hello>
+              </InfoContentWrapper>
               {isInView ? (
                 <Hint
                   initial={{ top: "50px" }}
