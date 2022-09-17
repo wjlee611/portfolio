@@ -87,15 +87,11 @@ function HomeNav() {
       <Button
         onClick={() => {
           setCurrent(2);
-          window.history.pushState(
-            null,
-            "information",
-            "/portfolio/#information"
-          );
+          window.history.pushState(null, "aboutme", "/portfolio/#aboutme");
         }}
         isSelected={current === 2}
       >
-        <span>Information</span>
+        <span>About Me</span>
         <BtnBG />
       </Button>
       <Button

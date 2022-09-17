@@ -57,7 +57,7 @@ function Home() {
         window.history.replaceState(null, "projects", "/portfolio/#projects");
       } else {
         if (
-          window.location.hash !== "#information" &&
+          window.location.hash !== "#aboutme" &&
           window.location.hash !== "#projects" &&
           window.location.hash !== "#timeline"
         ) {
@@ -72,7 +72,7 @@ function Home() {
           block: "start",
         });
       }
-      if (window.location.hash === "#information") {
+      if (window.location.hash === "#aboutme") {
         setView(2);
         refMInfo.current?.scrollIntoView({
           inline: "start",
@@ -108,7 +108,7 @@ function Home() {
           block: "start",
         });
       }
-      if (window.location.hash === "#information") {
+      if (window.location.hash === "#aboutme") {
         setView(2);
         refMInfo.current?.scrollIntoView({
           behavior: "smooth",

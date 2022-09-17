@@ -7,7 +7,7 @@ function Canvas() {
 
   var title = window.location.hash;
   if (title === "#home") title = "DEV. WOONG";
-  if (title === "#information") title = "INFORMATION";
+  if (title === "#aboutme") title = "ABOUT ME";
   if (title === "#projects") title = "PROJECTS";
   if (title === "#timeline") title = "TIME LINE";
 
@@ -82,7 +82,7 @@ function Canvas() {
     setTimeout(() => {
       title = window.location.hash;
       if (title === "#home") title = "DEV. WOONG";
-      if (title === "#information") title = "INFORMATION";
+      if (title === "#aboutme") title = "ABOUT ME";
       if (title === "#projects") title = "PROJECTS";
       if (title === "#timeline") title = "TIME LINE";
 

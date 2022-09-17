@@ -9,7 +9,7 @@
 The main page. (above screenshot)\
 Keywords about me appear randomly and move around.
 
-### [/#information](https://wjlee611.github.io/portfolio/#information)
+### [/#aboutme](https://wjlee611.github.io/portfolio/#aboutme)
 The information page.\
 Here is my photo and a brief self-introduction.\
 And also include email forms, contact methods, and my skills are listed.

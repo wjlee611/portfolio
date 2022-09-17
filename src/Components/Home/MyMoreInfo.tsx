@@ -403,11 +403,11 @@ function MyMoreInfo() {
               </Hello>
               {isInView ? (
                 <Hint
-                  initial={{ top: "20px" }}
+                  initial={{ top: "50px" }}
                   animate={{ top: "-20px" }}
                   transition={{ delay: 1 }}
                 >
-                  Click me to contact :&#41;
+                  Click my photo to contact :&#41;
                 </Hint>
               ) : null}
             </ContentsWrapper>
